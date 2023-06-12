@@ -12,5 +12,10 @@ namespace Aplicacion02
             string rutaImagen = "C:\\Users\\veliz\\Desktop\\dados\\dado2.png";
             this.picDado01.Image = Image.FromFile(rutaImagen);
         }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

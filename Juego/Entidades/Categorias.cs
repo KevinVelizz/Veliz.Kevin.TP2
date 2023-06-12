@@ -1,30 +1,45 @@
 ﻿namespace Entidades
 {
-    public static class Categorias
+    public class Categorias
     {
-        public static List<int> CalculaTipoCategoria(List<int> dados)
+        public static List<int> CalculaTipoCategoria(List<int> dados, bool unicoTiro)
         {
-            List<int> listaCategorias = new List<int>();
+            List<int> listaPuntosCategorias = new List<int>();
             for (int i = 0; i < dados.Count; i++)
             {
-                if (dados[i] == 1)
+                if (EsGenerala(dados))
                 {
-                    listaCategorias.Add(200);
+                    if (unicoTiro)
+                    {
+                        listaPuntosCategorias.Add(100);
+                    }
+                    else
+                    {
+                        listaPuntosCategorias.Add(50);
+                    }
                 }
-                else if (dados[i] == 2)
+                else if (EsGeneralaReal(dados))
                 {
-                    listaCategorias.Add(50);
+                    listaPuntosCategorias.Add(60);
                 }
-                else if (dados[i] == 3)
+                else if (EsEscaleraMayor(dados) || EsEscaleraMenor(dados))
                 {
-                    listaCategorias.Add(100);
+                    listaPuntosCategorias.Add(20);
                 }
-                else if (dados[i] == 4)
+                else if (EsPoker(dados))
                 {
-                    listaCategorias.Add(150);
+                    listaPuntosCategorias.Add(40);
+                }
+                else if (EsFull(dados))
+                {
+                    listaPuntosCategorias.Add(30);
+                }
+                else
+                {
+                    listaPuntosCategorias.Add(0);
                 }
             }
-            return listaCategorias;
+            return listaPuntosCategorias;
         }
 
         public static bool EsGenerala(List<int> dados)
@@ -36,43 +51,97 @@
                 int contador = 0;
                 for (int i = 1;  i < dados.Count; i++)
                 {
-                    if (primerDado == dados[i])
+                    if (primerDado == dados[i] && dados[0] != 1)
                     {
                         contador++;
                     }
                 }
-                if (contador == 5)
+                if (contador == 4)
                 {
                     retorno = true;
                 }
             }
             return retorno;
         }
-
         public static bool EsPoker(List<int> dados)
         {
-            bool retorno = false;
-            int j = 0;
-            int contador = 0;
-            
-            for (int i = 0; i < 2; i++)
+            foreach (int dado in dados)
             {
-                j = i;
-                while (j < 5)
+                int contador = 0;
+                foreach (int otroDado in dados)
                 {
-                    if (i != j && dados[i] == dados[j])
+                    if (dado == otroDado)
                     {
-                        contador++;   
+                        contador++;
                     }
-                    j++;
                 }
-            } 
-            if (contador == 3)
+                if (contador == 4)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool EsFull(List<int> dados)
+        {
+            bool retorno = false;
+            dados.Sort();
+            if (dados[0] == dados[1] && dados[1] == dados[2] && dados[3] == dados[4] || dados[0] == dados[1] && dados[2] == dados[3] && dados[3] == dados[4])
             {
                 retorno = true;
             }
-            
             return retorno;
         }
+
+        public static bool EsEscaleraMenor(List<int> dados)
+        {
+            dados.Sort();
+            bool retorno = false;
+            for (int i = 0; i < dados.Count - 1; i++)
+            {
+                if (dados[i] == dados[i + 1] && dados[0] == 1) 
+                {
+                    retorno = true;
+                }
+                else
+                {
+                    retorno = false;
+                    break;
+                }
+            }
+            return retorno;
+        }
+
+        public static bool EsEscaleraMayor(List<int> dados)
+        {
+            dados.Sort();
+            bool retorno = false;
+            for (int i = 0; i < dados.Count - 1; i++)
+            {
+                if (dados[i] == dados[i + 1] && dados[0] == 2)
+                {
+                    retorno = true;
+                }
+                else
+                {
+                    retorno = false;
+                    break;
+                }
+            }
+            return retorno;
+        }
+
+        public static bool EsGeneralaReal(List<int> dados)
+        {
+            bool retorno = false;
+            if (dados[0] == 1 && dados[0] == dados[1] && dados[0] == dados[2] && dados[0] == dados[3] && dados[0] == dados[4])
+            {
+                retorno = true;
+            }
+            return retorno;
+        }
+
+        
     }
 }

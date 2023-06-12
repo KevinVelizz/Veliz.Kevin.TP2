@@ -5,23 +5,11 @@ internal class Program
     {
         Jugador jugador = new Jugador("Mauricio");
 
-        List<int> dados = new List<int>();
-        dados.Add(1);
-        dados.Add(4);
-        dados.Add(4);
-        dados.Add(4);
-        dados.Add(4);
+        List<int> dados = jugador.LanzarDados();
 
-        
-
-        if (Categorias.EsPoker(dados))
+        foreach (int dado in dados)
         {
-            Console.WriteLine("es poker");
-        }
-        else
-        {
-            Console.WriteLine("no es poker");
-        }
-
+            Console.WriteLine(dado.ToString());    
+        } 
     }
 }

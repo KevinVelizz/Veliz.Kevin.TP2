@@ -1,18 +1,16 @@
-﻿using System;
-
+﻿
 namespace Entidades
 {
-    public class Jugador
+    public class Jugador : IJugador
     {
         private string nombre;
-        private int tiradas;
         private int puntaje;
         private List<int> categorias;
+        private int victorias;
 
         private Jugador() 
         {
             this.categorias = new List<int>();
-            this.tiradas = 3;
         }
         
         public Jugador(string nombre) :this()
@@ -32,10 +30,10 @@ namespace Entidades
             set { this.nombre = value; }
         }
 
-        private int Tiradas
+        public int Victorias
         {
-            get { return this.tiradas; }
-            set { this.tiradas = value; }
+            get { return this.victorias; }
+            set { this.victorias = value; }
         }
 
         public int ElegirCategoria(List<int> listaCategorias)
@@ -67,6 +65,26 @@ namespace Entidades
                 }
             }
             return 0;
+        }
+        public void CalcularPuntos(List<int> listaPuntos)
+        {
+            foreach (int puntos in listaPuntos)
+            {
+                this.puntaje += puntos;
+            }
+        }
+
+        public List<int> LanzarDados()
+        {
+            List<int> dados = Funcionalidades.EstablecerValor(5);
+            for (int i = 0; i < 2; i++)
+            {
+                if (Funcionalidades.ObtenerBooleanoAleatorio())
+                {
+                    Funcionalidades.VolverATirar(dados);
+                }
+            }
+            return dados;
         }
     }
 }

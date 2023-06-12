@@ -32,7 +32,7 @@
         /// </summary>
         /// <param name="cantidad"></param>
         /// <returns>Retorna una lista con los indices de los dados.</returns>
-        public static List<int> DevolverIndiceDado(int cantidad)
+        public static List<int> DevolverIndicesDados(int cantidad)
         {
             List<int> indicesDeLosDados = new List<int>();
             for (int i = 0; i < cantidad; i++)
@@ -57,21 +57,6 @@
         }
 
         /// <summary>
-        /// El método tira los dados.
-        /// </summary>
-        public static void TirarDados()
-        {
-            List<int> dados = EstablecerValor(5);
-            for (int i = 0; i < 2;i++)
-            {
-                if (ObtenerBooleanoAleatorio())
-                {
-                    VolverATirar(dados);
-                }
-            }
-        }
-
-        /// <summary>
         /// El método modifica la lista en caso de que haya vuelto a tirar con los nuevos valores de los dados.
         /// </summary>
         /// <param name="dados"></param>
@@ -79,16 +64,19 @@
         public static List<int> VolverATirar(List<int> dados)
         {
             int cantidaDadosAVolverATirar = DevolverCantidadDadosATirar();
-            List<int> indicesDadosASacar = DevolverIndiceDado(cantidaDadosAVolverATirar);
+            List<int> indicesDadosASacar = DevolverIndicesDados(cantidaDadosAVolverATirar);
             indicesDadosASacar.Sort((x, y) => y.CompareTo(x));
 
-            foreach (int dado in indicesDadosASacar)
+            if (dados.Count > 0)
             {
-                dados.Remove(dados[dado]);
+                foreach (int dado in indicesDadosASacar)
+                {
+                    dados.Remove(dados[dado]);
+                }
+                List<int> nuevosDados = EstablecerValor(cantidaDadosAVolverATirar);
+                dados.AddRange(nuevosDados);
             }
-            List<int> nuevosDados = EstablecerValor(cantidaDadosAVolverATirar);
-            dados.AddRange(nuevosDados);
-            return nuevosDados;
+            return dados;
         }
     }
 }
