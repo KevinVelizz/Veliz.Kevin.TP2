@@ -1,21 +1,29 @@
-namespace Aplicacion02
+﻿namespace Aplicacion02
 {
     public partial class FrmPrincipal : Form
     {
+
         public FrmPrincipal()
         {
             InitializeComponent();
         }
 
-        private void btnModificarDado01_Click(object sender, EventArgs e)
+        private void btnGenerarSala_Click_1(object sender, EventArgs e)
         {
-            string rutaImagen = "C:\\Users\\veliz\\Desktop\\dados\\dado2.png";
-            this.picDado01.Image = Image.FromFile(rutaImagen);
+            Thread thread = new Thread(GenerarFormulario);
+            thread.Start();
         }
 
-        private void FrmPrincipal_Load(object sender, EventArgs e)
+        private void GenerarFormulario()
         {
+            // Crear un nuevo formulario de partida
+            FrmSala formulario = new FrmSala();
+            formulario.Text = "Nuevo Formulario";
 
+            // Mostrar el formulario en un hilo de interfaz de usuario separado
+            Application.Run(formulario);
         }
+
+
     }
 }

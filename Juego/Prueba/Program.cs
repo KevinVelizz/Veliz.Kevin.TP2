@@ -3,13 +3,10 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Jugador jugador = new Jugador("Mauricio");
+        
+        SalaJuego salaJuego = new SalaJuego();
 
-        List<int> dados = jugador.LanzarDados();
+        salaJuego.Jugar();
 
-        foreach (int dado in dados)
-        {
-            Console.WriteLine(dado.ToString());    
-        } 
     }
 }

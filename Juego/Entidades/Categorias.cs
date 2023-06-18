@@ -2,44 +2,33 @@
 {
     public class Categorias
     {
-        public static List<int> CalculaTipoCategoria(List<int> dados, bool unicoTiro)
+        public static int CalculaTipoCategoria(List<int> dados)
         {
-            List<int> listaPuntosCategorias = new List<int>();
+            int puntos = 0;
             for (int i = 0; i < dados.Count; i++)
             {
                 if (EsGenerala(dados))
                 {
-                    if (unicoTiro)
-                    {
-                        listaPuntosCategorias.Add(100);
-                    }
-                    else
-                    {
-                        listaPuntosCategorias.Add(50);
-                    }
+                    puntos = 100;
                 }
                 else if (EsGeneralaReal(dados))
                 {
-                    listaPuntosCategorias.Add(60);
+                    puntos = 60;
                 }
                 else if (EsEscaleraMayor(dados) || EsEscaleraMenor(dados))
                 {
-                    listaPuntosCategorias.Add(20);
+                    puntos = 20;
                 }
                 else if (EsPoker(dados))
                 {
-                    listaPuntosCategorias.Add(40);
+                    puntos = 40;
                 }
                 else if (EsFull(dados))
                 {
-                    listaPuntosCategorias.Add(30);
-                }
-                else
-                {
-                    listaPuntosCategorias.Add(0);
+                    puntos = 30;
                 }
             }
-            return listaPuntosCategorias;
+            return puntos;
         }
 
         public static bool EsGenerala(List<int> dados)
@@ -141,7 +130,6 @@
             }
             return retorno;
         }
-
         
     }
 }

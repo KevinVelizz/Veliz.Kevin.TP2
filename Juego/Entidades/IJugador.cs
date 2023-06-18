@@ -3,7 +3,7 @@
     public interface IJugador
     {
         List<int> LanzarDados();
-        void CalcularPuntos(List<int> listaPuntos);
+        void CalcularPuntos(int puntos);
     }
 }
 
