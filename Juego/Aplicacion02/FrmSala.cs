@@ -6,14 +6,14 @@ namespace Aplicacion02
     {
 
         private SalaJuego sala;
-        private List<Jugador> jugador1;
-        private List<Jugador> jugador2;
         private AccesoDatos acceso;
+        private CancellationTokenSource cancellationTokenSource;
+
+        public delegate void CallBack(DataGridView dtgvJugador, Jugador jugador);
+
         public FrmSala()
         {
             InitializeComponent();
-            this.jugador1 = new List<Jugador>();
-            this.jugador2 = new List<Jugador>();
             this.acceso = new AccesoDatos();
         }
 
@@ -31,43 +31,75 @@ namespace Aplicacion02
                 this.sala = new SalaJuego(frmGenerarJugadores.Jugador1.Nombre, frmGenerarJugadores.Jugador2.Nombre);
                 this.lblNombreJugador1.Text = this.sala.Jugador1.Nombre;
                 this.lblNombreJugador2.Text = this.sala.Jugador2.Nombre;
+
                 this.sala.SalaTerminada += SalaTerminadaEventHandler;
                 this.sala.Jugador1.ActualizarDados += ActualizarDadosEventHandler;
                 this.sala.Jugador2.ActualizarDados += ActualizarDadosEventHandler;
-                this.btnJugar.Enabled = false;
-                Task hiloSala = new Task(() => sala.Jugar());
-                hiloSala.Start();
+                this.sala.ActualizarCategorias += ActualizarCategoriasEventHandler;
 
+                this.cancellationTokenSource = new CancellationTokenSource();
+                CancellationToken token = this.cancellationTokenSource.Token;
+
+                this.btnJugar.Enabled = false;
+                Task hiloSala = new Task(() => sala.Jugar(this.cancellationTokenSource), token);
+                hiloSala.Start();
             }
         }
 
-        public void ModificarDataGrid()
+        public void ModificarDataGrid(DataGridView dtgvJugador, Jugador jugador)
         {
             if (this.InvokeRequired)
             {
-                this.BeginInvoke(this.ModificarDataGrid);
+                CallBack callBack = new CallBack(this.ModificarDataGrid);
+                Object[] argumentos = { dtgvJugador, jugador };
+                this.BeginInvoke(callBack, argumentos);
             }
             else
             {
-                this.jugador1.Add(this.sala.Jugador1);
-                this.jugador2.Add(this.sala.Jugador2);
-                this.dtgvJugador1.DataSource = this.jugador1;
-                this.dtgvJugador2.DataSource = this.jugador2;
+                foreach (Dictionary<string, bool> dic in jugador.ListaCategorias)
+                {
+                    foreach (KeyValuePair<string, bool> kvp in dic)
+                    {
+                        int rows = dtgvJugador.Rows.Add();
+                        dtgvJugador.Rows[rows].Cells[0].Value = kvp.Key;
+                        dtgvJugador.Rows[rows].Cells[1].Value = kvp.Value;
+                    }
+                }
+                this.btnJugar.Enabled = true;
             }
         }
 
         private void SalaTerminadaEventHandler(object sender, EventArgs e)
         {
-            this.ModificarDataGrid();
+            SalaJuego salaJuego = (SalaJuego)sender;
             this.acceso.AgregarDato(this.sala.Jugador1);
             this.acceso.AgregarDato(this.sala.Jugador2);
-            this.btnJugar.Enabled = true;
+            this.lblPuntajeJugador1.Text = salaJuego.Jugador1.Puntaje.ToString();
+            this.lblPuntajeJugador2.Text = salaJuego.Jugador2.Puntaje.ToString();
+            if (salaJuego.Jugador1.Puntaje > salaJuego.Jugador2.Puntaje)
+            {
+                MessageBox.Show($"El ganador es: {salaJuego.Jugador1.Nombre}");
+            }
+            else
+            {
+                MessageBox.Show($"El ganador es: {salaJuego.Jugador2.Nombre}");
+            }
             MessageBox.Show("Sala de juego terminada: " + this.sala.Id);
         }
 
         private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.sala.Terminar();
+            try
+            {
+                if (this.sala is not null)
+                {
+                    this.sala.Terminar();
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show($"{ex.Message} - {ex.StackTrace}");
+            }
         }
 
         private void ActualizarDadosEventHandler(List<int> dados)
@@ -109,5 +141,21 @@ namespace Aplicacion02
             }
         }
 
+        private void ActualizarCategoriasEventHandler(Jugador jugador)
+        {
+            if (this.lblNombreJugador1.Text == jugador.Nombre)
+            {
+                this.ModificarDataGrid(this.dtgvJugador1, jugador);
+            }
+            else
+            {
+                this.ModificarDataGrid(this.dtgvJugador2, jugador);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.cancellationTokenSource.Cancel();
+        }
     }
 }

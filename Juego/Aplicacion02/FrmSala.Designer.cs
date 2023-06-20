@@ -44,7 +44,12 @@
             lblPuntajeText1 = new Label();
             lblNombreJugador1 = new Label();
             dtgvJugador1 = new DataGridView();
+            Categoria = new DataGridViewTextBoxColumn();
+            Realizado = new DataGridViewTextBoxColumn();
             btnJugar = new Button();
+            btnCancelar = new Button();
+            Categoria1 = new DataGridViewTextBoxColumn();
+            Realizado1 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)picDado01).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picDado05).BeginInit();
@@ -166,6 +171,7 @@
             // dtgvJugador2
             // 
             dtgvJugador2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvJugador2.Columns.AddRange(new DataGridViewColumn[] { Categoria1, Realizado1 });
             dtgvJugador2.Location = new Point(15, 32);
             dtgvJugador2.Name = "dtgvJugador2";
             dtgvJugador2.RowTemplate.Height = 25;
@@ -180,9 +186,9 @@
             panelJugador1.Controls.Add(lblPuntajeText1);
             panelJugador1.Controls.Add(lblNombreJugador1);
             panelJugador1.Controls.Add(dtgvJugador1);
-            panelJugador1.Location = new Point(141, 17);
+            panelJugador1.Location = new Point(132, 17);
             panelJugador1.Name = "panelJugador1";
-            panelJugador1.Size = new Size(216, 219);
+            panelJugador1.Size = new Size(225, 219);
             panelJugador1.TabIndex = 5;
             // 
             // lblPuntajeJugador1
@@ -198,7 +204,7 @@
             // 
             lblPuntajeText1.Anchor = AnchorStyles.None;
             lblPuntajeText1.AutoSize = true;
-            lblPuntajeText1.Location = new Point(57, 193);
+            lblPuntajeText1.Location = new Point(61, 193);
             lblPuntajeText1.Name = "lblPuntajeText1";
             lblPuntajeText1.Size = new Size(50, 15);
             lblPuntajeText1.TabIndex = 2;
@@ -216,11 +222,22 @@
             // dtgvJugador1
             // 
             dtgvJugador1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvJugador1.Location = new Point(10, 32);
+            dtgvJugador1.Columns.AddRange(new DataGridViewColumn[] { Categoria, Realizado });
+            dtgvJugador1.Location = new Point(16, 32);
             dtgvJugador1.Name = "dtgvJugador1";
             dtgvJugador1.RowTemplate.Height = 25;
             dtgvJugador1.Size = new Size(194, 150);
             dtgvJugador1.TabIndex = 0;
+            // 
+            // Categoria
+            // 
+            Categoria.HeaderText = "Categoria";
+            Categoria.Name = "Categoria";
+            // 
+            // Realizado
+            // 
+            Realizado.HeaderText = "Realizado";
+            Realizado.Name = "Realizado";
             // 
             // btnJugar
             // 
@@ -232,12 +249,33 @@
             btnJugar.UseVisualStyleBackColor = true;
             btnJugar.Click += btnGenerarSalas_Click;
             // 
+            // btnCancelar
+            // 
+            btnCancelar.Location = new Point(107, 439);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(95, 43);
+            btnCancelar.TabIndex = 7;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
+            // 
+            // Categoria1
+            // 
+            Categoria1.HeaderText = "Categoria";
+            Categoria1.Name = "Categoria1";
+            // 
+            // Realizado1
+            // 
+            Realizado1.HeaderText = "Realizado";
+            Realizado1.Name = "Realizado1";
+            // 
             // FrmSala
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 0, 0);
             ClientSize = new Size(919, 494);
+            Controls.Add(btnCancelar);
             Controls.Add(btnJugar);
             Controls.Add(panelJugador1);
             Controls.Add(panelJugador2);
@@ -279,5 +317,10 @@
         private Label lblPuntajeJugador1;
         private Label lblPuntajeText1;
         private Button btnJugar;
+        private Button btnCancelar;
+        private DataGridViewTextBoxColumn Categoria;
+        private DataGridViewTextBoxColumn Realizado;
+        private DataGridViewTextBoxColumn Categoria1;
+        private DataGridViewTextBoxColumn Realizado1;
     }
 }

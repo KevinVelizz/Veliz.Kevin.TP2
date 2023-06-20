@@ -3,13 +3,13 @@
     public class SalaJuego
     {
         private bool jugando = true;
-        private int turnosCompletados = 0;
         private static int contadorSalas = 0;
         private int id;
         private Jugador jugador1;
         private Jugador jugador2;
 
         public event EventHandler SalaTerminada;
+        public event ActualizarCategoriasEventHandler ActualizarCategorias;
 
         public SalaJuego(string nombreJugador1, string nombreJugador2)
         {
@@ -35,24 +35,36 @@
             get { return this.jugador2; }
             set { this.jugador2 = value; }
         }
-
-        public void Jugar()
+        public void Jugar(CancellationTokenSource cancellationTokenSource)
         {
-            do
+            while(this.jugando && !cancellationTokenSource.IsCancellationRequested)
             {
-                jugador1.LanzarDados();
+                this.jugador1.LanzarDados();
+                this.OnActualizarCategorias(this.jugador1);
 
-                jugador2.LanzarDados();
+                this.jugador2.LanzarDados();
+                this.OnActualizarCategorias(this.jugador2);
 
                 if (TerminarSala())
                 {
-                    Terminar();
+                    this.Terminar();
                 }
-            } while (this.jugando);
+            } 
+            this.Terminar();
         }
 
         public void Terminar()
         {
+            if (this.jugador1.Puntaje > this.jugador2.Puntaje)
+            {
+                this.jugador1.Victorias += 1;
+                Console.WriteLine($"El ganador es:{this.jugador1.Nombre}");
+            }
+            else
+            {
+                this.jugador2.Victorias += 1;
+                Console.WriteLine($"El ganador es: {this.jugador2.Nombre}");
+            }
             this.jugando = false;
             OnSalaTerminada(); 
             Console.WriteLine("Sala de juego terminada: " + Id);
@@ -65,11 +77,19 @@
 
         private bool TerminarSala()
         {
-            if (turnosCompletados >= 6)
+            if (jugador1.categorias.TerminoJuego || jugador2.categorias.TerminoJuego || jugador2.Turnos == 5)
             {
                 return true;
             }
             return false;
+        }
+
+        private void OnActualizarCategorias(Jugador jugador)
+        {
+            if (this.ActualizarCategorias is not null)
+            {
+                this.ActualizarCategorias?.Invoke(jugador);
+            }
         }
     }
 }

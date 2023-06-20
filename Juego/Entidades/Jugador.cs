@@ -8,12 +8,15 @@ namespace Entidades
         private int puntaje;
         private int victorias;
         private int turnos;
+        public Categorias categorias;
 
+        private List<Dictionary<string, bool>> listaCategorias;
         public event ActualizarDadosEventHandler ActualizarDados;
 
         private Jugador() 
         {
-            
+            this.categorias = new Categorias();
+            this.listaCategorias = new List<Dictionary<string, bool>>();
         }
         
         public Jugador(string nombre) :this()
@@ -42,14 +45,16 @@ namespace Entidades
         public int Victorias
         {
             get { return this.victorias; }
-            private set { this.victorias = value; }
+            set { this.victorias = value; }
         }
 
         public int Turnos
         {
             get { return this.turnos; }
-            private set { this.turnos = value; }
+            set { this.turnos = value; }
         }
+
+        public List<Dictionary<string, bool>> ListaCategorias { get => listaCategorias; set => listaCategorias = value; }
 
         public void CalcularPuntos(int puntos)
         {
@@ -61,8 +66,7 @@ namespace Entidades
             List<int> dados = Funcionalidades.EstablecerValor(5);
             Thread.Sleep(2000);
             this.OnActualizarDados(dados);
-            this.turnos += 1;
-            Categorias categorias = new Categorias();
+            
 
             for (int i = 0; i < 2; i++)
             {
@@ -71,11 +75,12 @@ namespace Entidades
                 {
                     dados = Funcionalidades.VolverATirar(dados);
                     this.OnActualizarDados(dados);
-                    this.turnos += 1;
                 }
             }
-            int puntosCaegoria = categorias.CalculaTipoCategoria(dados);
-            this.CalcularPuntos(puntosCaegoria);
+            int puntosCategoria = categorias.CalculaTipoCategoria(dados);
+            this.CalcularPuntos(puntosCategoria);
+            this.ListaCategorias.Add(categorias.CategoriaRealizada);
+            this.turnos += 1;
             Console.WriteLine($"Terminó jugador {this.nombre}");
             Thread.Sleep(2000);
             return dados;

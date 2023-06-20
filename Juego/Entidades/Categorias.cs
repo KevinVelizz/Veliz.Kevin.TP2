@@ -1,67 +1,82 @@
-﻿using System.Collections.Generic;
+﻿
 
 namespace Entidades
 {
     public class Categorias
     {
-
         private bool esGenerala;
         private bool esPoker;
         private bool esEscaleraMayor;
         private bool esGeneralaReal;
         private bool esEscaleraMenor;
         private bool esFull;
-        private Dictionary<int, bool> categoriaRealizada;
-
+        private bool terminoJuego;
+        private Dictionary<string, bool> categoriaRealizada;
 
         public Categorias()
         {
-            this.categoriaRealizada = new Dictionary<int, bool>();
+            this.categoriaRealizada = new Dictionary<string, bool>();
             for (int i = 1; i <= 6; i++)
             {
-                this.categoriaRealizada.Add(i, false);
+                this.categoriaRealizada.Add($"{i}", false);
             }
         }
+
+        public Dictionary<string, bool> CategoriaRealizada
+        {
+            get { return this.categoriaRealizada; }
+            set { this.categoriaRealizada = value; }
+        }
+
+        public bool TerminoJuego { get => terminoJuego;}
 
         public int CalculaTipoCategoria(List<int> dados)
         {
             int puntos = 0;
-
-            
-
             if (EsGenerala(dados) && !this.esGenerala)
             {
                 puntos = 100;
                 this.esGenerala = !this.esGenerala;
+                this.categoriaRealizada.Add("Es generala", true);
             }
             else if (EsGeneralaReal(dados) && !this.esGeneralaReal)
             {
                 puntos = 60;
                 this.esGeneralaReal = !this.esGeneralaReal;
+                this.categoriaRealizada.Add("Es GeneralaReal", true);
             }
             else if (EsEscaleraMenor(dados) && !this.esEscaleraMenor)
             {
                 puntos = 20;
                 this.esEscaleraMenor = !this.esEscaleraMenor;
+                this.categoriaRealizada.Add("Es EscaleraMenor", true);
             }
             else if (EsEscaleraMayor(dados) && !this.esEscaleraMayor)
             {
                 puntos = 20;
                 this.esEscaleraMayor = !this.esEscaleraMayor;
+                this.categoriaRealizada.Add("Es EscaleraMayor", true);
             }
             else if (EsPoker(dados) && !this.esPoker)
             {
                 puntos = 40;
                 this.esPoker = !this.esPoker;
+                this.categoriaRealizada.Add("Es Poker", true);
             }
             else if (EsFull(dados) && !this.esFull)
             {
                 puntos = 30;
                 this.esFull = !this.esFull;
+                this.categoriaRealizada.Add("Es Full", true);
             }
-            else
+            else if (this.QuedanCategoriasNumericas())
             {
                 puntos = this.DevolverPuntajeNumeros(dados);
+            }
+
+            if (this.esEscaleraMayor && this.esEscaleraMenor && this.esPoker && this.esGenerala && this.esFull && this.esGeneralaReal && !this.QuedanCategoriasNumericas())
+            {
+                this.terminoJuego = true;
             }
             return puntos;
         }
@@ -172,25 +187,45 @@ namespace Entidades
 
             for (int i = 0; i < dados.Count; i++)
             {
-                for (int j = i + 1; j < dados.Count; j++)
+                if (!dadosRepetidos.ContainsKey(dados[i]))
                 {
-                    if (dados[i] == dados[j])
-                    {
-                        if (!dadosRepetidos.ContainsKey(dados[j]))
-                        {
-                            dadosRepetidos.Add(dados[i], 1);
-                        }
-                        dadosRepetidos[dados[i]] += 1;
-                    }
+                    dadosRepetidos.Add(dados[i], 1);
+                }
+                else
+                {
+                    dadosRepetidos[dados[i]] += 1;
                 }
             }
-            Dictionary<int, int> dadosOrdenados = dadosRepetidos.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            Dictionary<int, int> dadosOrdenados = dadosRepetidos.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+
             KeyValuePair<int, int> primerElemento = dadosOrdenados.FirstOrDefault();
-            if (this.categoriaRealizada[primerElemento.Key])
+            if (!this.categoriaRealizada.ContainsKey("0"))
             {
-                //Acceder a 2do que mas veces repitio si es que tiene. Si no tiene devuelve el uno si es que no se realizó la jugada.
+                while (this.categoriaRealizada[primerElemento.Key.ToString()] && dadosOrdenados.Count > 0)
+                {
+                    dadosOrdenados.Remove(primerElemento.Key);
+                    primerElemento = dadosOrdenados.FirstOrDefault();
+                }
+
+                if (dadosOrdenados.Count > 0)
+                {
+                    this.categoriaRealizada[primerElemento.Key.ToString()] = true;
+                }
+                return primerElemento.Key * primerElemento.Value;
             }
-            return primerElemento.Key * primerElemento.Value;
+            return 0;
+        }
+
+        private bool QuedanCategoriasNumericas()
+        {
+            for (int i = 1; i <= 6; i++)
+            { 
+                if (!this.categoriaRealizada[i.ToString()])
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
