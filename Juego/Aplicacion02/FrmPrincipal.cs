@@ -10,20 +10,20 @@
 
         private void btnGenerarSala_Click_1(object sender, EventArgs e)
         {
-            Thread thread = new Thread(GenerarFormulario);
-            thread.Start();
+            Task task = new Task(GenerarFormulario);
+            task.Start();
         }
 
         private void GenerarFormulario()
         {
-            // Crear un nuevo formulario de partida
             FrmSala formulario = new FrmSala();
             formulario.Text = "Nuevo Formulario";
-
-            // Mostrar el formulario en un hilo de interfaz de usuario separado
             Application.Run(formulario);
         }
 
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }

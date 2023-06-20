@@ -21,7 +21,7 @@
         public int Id
         {
             get { return this.id; }
-            private set { this.id = value; }
+            set { this.id = value; }
         }
 
         public Jugador Jugador1
@@ -38,20 +38,17 @@
 
         public void Jugar()
         {
-            while (this.jugando)
-            { 
+            do
+            {
                 jugador1.LanzarDados();
-
 
                 jugador2.LanzarDados();
 
-                this.turnosCompletados = jugador1.Turnos + jugador2.Turnos;
-           
                 if (TerminarSala())
                 {
                     Terminar();
                 }
-            }
+            } while (this.jugando);
         }
 
         public void Terminar()

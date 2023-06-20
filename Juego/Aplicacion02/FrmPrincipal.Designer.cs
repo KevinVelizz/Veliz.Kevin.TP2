@@ -49,6 +49,7 @@
             Controls.Add(btnGenerarSala);
             Name = "FrmPrincipal";
             Text = "FormSala";
+            Load += FrmPrincipal_Load;
             ResumeLayout(false);
         }
 

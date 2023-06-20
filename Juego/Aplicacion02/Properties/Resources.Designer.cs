@@ -73,16 +73,6 @@ namespace Aplicacion02.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap dado11 {
-            get {
-                object obj = ResourceManager.GetObject("dado11", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap dado2 {
             get {
                 object obj = ResourceManager.GetObject("dado2", resourceCulture);
@@ -116,6 +106,16 @@ namespace Aplicacion02.Properties {
         internal static System.Drawing.Bitmap dado5 {
             get {
                 object obj = ResourceManager.GetObject("dado5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dado6 {
+            get {
+                object obj = ResourceManager.GetObject("dado6", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

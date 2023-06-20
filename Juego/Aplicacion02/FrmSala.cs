@@ -1,10 +1,10 @@
 using Entidades;
+
 namespace Aplicacion02
 {
     public partial class FrmSala : Form
     {
 
-        private List<SalaJuego> salas;
         private SalaJuego sala;
         private List<Jugador> jugador1;
         private List<Jugador> jugador2;
@@ -12,7 +12,6 @@ namespace Aplicacion02
         public FrmSala()
         {
             InitializeComponent();
-            this.salas = new List<SalaJuego>();
             this.jugador1 = new List<Jugador>();
             this.jugador2 = new List<Jugador>();
             this.acceso = new AccesoDatos();
@@ -35,8 +34,10 @@ namespace Aplicacion02
                 this.sala.SalaTerminada += SalaTerminadaEventHandler;
                 this.sala.Jugador1.ActualizarDados += ActualizarDadosEventHandler;
                 this.sala.Jugador2.ActualizarDados += ActualizarDadosEventHandler;
-                Thread hiloSala = new Thread(() => sala.Jugar());
+                this.btnJugar.Enabled = false;
+                Task hiloSala = new Task(() => sala.Jugar());
                 hiloSala.Start();
+
             }
         }
 
@@ -57,44 +58,56 @@ namespace Aplicacion02
 
         private void SalaTerminadaEventHandler(object sender, EventArgs e)
         {
-            SalaJuego salaTerminada = (SalaJuego)sender;
-            this.salas.Remove(salaTerminada);
             this.ModificarDataGrid();
-            this.acceso.AgregarDato(jugador1[0]);
-            this.acceso.AgregarDato(jugador2[0]);
-            MessageBox.Show("Sala de juego terminada: " + salaTerminada.Id);
+            this.acceso.AgregarDato(this.sala.Jugador1);
+            this.acceso.AgregarDato(this.sala.Jugador2);
+            this.btnJugar.Enabled = true;
+            MessageBox.Show("Sala de juego terminada: " + this.sala.Id);
         }
 
         private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            foreach (SalaJuego sala1 in this.salas)
-            {
-                sala1.Terminar();
-            }
+            this.sala.Terminar();
         }
 
         private void ActualizarDadosEventHandler(List<int> dados)
         {
-            // Actualizar las imágenes de los dados en el subproceso principal de la interfaz de usuario
-            Invoke(new Action(() =>
-            {
-                string rutaImagen = $"C:\\Users\\veliz\\Desktop\\dados\\dado{dados[0]}.png";
-                this.picDado01.Image = Image.FromFile(rutaImagen);
+            this.picDado01.Image = this.DevolverImagen(dados[0]);
 
-                rutaImagen = $"C:\\Users\\veliz\\Desktop\\dados\\dado{dados[1]}.png";
-                this.picDado02.Image = Image.FromFile(rutaImagen);
+            this.picDado02.Image = this.DevolverImagen(dados[1]);
 
-                rutaImagen = $"C:\\Users\\veliz\\Desktop\\dados\\dado{dados[2]}.png";
-                this.picDado03.Image = Image.FromFile(rutaImagen);
+            this.picDado03.Image = this.DevolverImagen(dados[2]);
 
-                rutaImagen = $"C:\\Users\\veliz\\Desktop\\dados\\dado{dados[3]}.png";
-                this.picDado04.Image = Image.FromFile(rutaImagen);
+            this.picDado04.Image = this.DevolverImagen(dados[3]);
 
-                rutaImagen = $"C:\\Users\\veliz\\Desktop\\dados\\dado{dados[4]}.png";
-                this.picDado05.Image = Image.FromFile(rutaImagen);
-            }));
+            this.picDado05.Image = this.DevolverImagen(dados[4]);
         }
 
+        private Bitmap DevolverImagen(int indice)
+        {
+            switch (indice)
+            {
+                case 1:
+                    return Properties.Resources.dado1;
+
+                case 2:
+                    return Properties.Resources.dado2;
+
+                case 3:
+                    return Properties.Resources.dado3;
+
+                case 4:
+                    return Properties.Resources.dado4;
+
+                case 5:
+                    return Properties.Resources.dado5;
+
+                case 6:
+                    return Properties.Resources.dado6;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(indice));
+            }
+        }
 
     }
 }

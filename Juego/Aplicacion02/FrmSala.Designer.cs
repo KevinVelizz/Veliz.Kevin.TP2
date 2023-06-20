@@ -44,8 +44,7 @@
             lblPuntajeText1 = new Label();
             lblNombreJugador1 = new Label();
             dtgvJugador1 = new DataGridView();
-            btnGenerarSalas = new Button();
-            btnGenerarJugadores = new Button();
+            btnJugar = new Button();
             ((System.ComponentModel.ISupportInitialize)picDado01).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picDado05).BeginInit();
@@ -60,10 +59,11 @@
             // 
             // picDado01
             // 
-            picDado01.Image = Properties.Resources.dado11;
+            picDado01.Image = Properties.Resources.dado1;
             picDado01.Location = new Point(107, 15);
             picDado01.Name = "picDado01";
             picDado01.Size = new Size(66, 67);
+            picDado01.SizeMode = PictureBoxSizeMode.Zoom;
             picDado01.TabIndex = 2;
             picDado01.TabStop = false;
             // 
@@ -88,6 +88,7 @@
             picDado05.Location = new Point(107, 306);
             picDado05.Name = "picDado05";
             picDado05.Size = new Size(66, 66);
+            picDado05.SizeMode = PictureBoxSizeMode.Zoom;
             picDado05.TabIndex = 6;
             picDado05.TabStop = false;
             // 
@@ -97,6 +98,7 @@
             picDado04.Location = new Point(107, 233);
             picDado04.Name = "picDado04";
             picDado04.Size = new Size(66, 67);
+            picDado04.SizeMode = PictureBoxSizeMode.Zoom;
             picDado04.TabIndex = 5;
             picDado04.TabStop = false;
             // 
@@ -106,6 +108,7 @@
             picDado03.Location = new Point(107, 161);
             picDado03.Name = "picDado03";
             picDado03.Size = new Size(66, 66);
+            picDado03.SizeMode = PictureBoxSizeMode.Zoom;
             picDado03.TabIndex = 4;
             picDado03.TabStop = false;
             // 
@@ -115,6 +118,7 @@
             picDado02.Location = new Point(107, 88);
             picDado02.Name = "picDado02";
             picDado02.Size = new Size(66, 67);
+            picDado02.SizeMode = PictureBoxSizeMode.Zoom;
             picDado02.TabIndex = 3;
             picDado02.TabStop = false;
             // 
@@ -218,24 +222,15 @@
             dtgvJugador1.Size = new Size(194, 150);
             dtgvJugador1.TabIndex = 0;
             // 
-            // btnGenerarSalas
+            // btnJugar
             // 
-            btnGenerarSalas.Location = new Point(12, 439);
-            btnGenerarSalas.Name = "btnGenerarSalas";
-            btnGenerarSalas.Size = new Size(89, 43);
-            btnGenerarSalas.TabIndex = 6;
-            btnGenerarSalas.Text = "Jugar";
-            btnGenerarSalas.UseVisualStyleBackColor = true;
-            btnGenerarSalas.Click += btnGenerarSalas_Click;
-            // 
-            // btnGenerarJugadores
-            // 
-            btnGenerarJugadores.Location = new Point(107, 439);
-            btnGenerarJugadores.Name = "btnGenerarJugadores";
-            btnGenerarJugadores.Size = new Size(113, 43);
-            btnGenerarJugadores.TabIndex = 7;
-            btnGenerarJugadores.Text = "GenerarJugadores";
-            btnGenerarJugadores.UseVisualStyleBackColor = true;
+            btnJugar.Location = new Point(12, 439);
+            btnJugar.Name = "btnJugar";
+            btnJugar.Size = new Size(89, 43);
+            btnJugar.TabIndex = 6;
+            btnJugar.Text = "Jugar";
+            btnJugar.UseVisualStyleBackColor = true;
+            btnJugar.Click += btnGenerarSalas_Click;
             // 
             // FrmSala
             // 
@@ -243,8 +238,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 0, 0);
             ClientSize = new Size(919, 494);
-            Controls.Add(btnGenerarJugadores);
-            Controls.Add(btnGenerarSalas);
+            Controls.Add(btnJugar);
             Controls.Add(panelJugador1);
             Controls.Add(panelJugador2);
             Controls.Add(panel1);
@@ -284,7 +278,6 @@
         private Label lblPuntajeText2;
         private Label lblPuntajeJugador1;
         private Label lblPuntajeText1;
-        private Button btnGenerarSalas;
-        private Button btnGenerarJugadores;
+        private Button btnJugar;
     }
 }
