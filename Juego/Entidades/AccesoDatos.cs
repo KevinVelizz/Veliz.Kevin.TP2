@@ -16,10 +16,15 @@ namespace Entidades
         static AccesoDatos()
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = @".";
+            //builder.DataSource = @".";
             builder.IntegratedSecurity = true;
-            builder.InitialCatalog = "generala";
+            builder.InitialCatalog = "generala_db";
+            builder.UserID = "sa";
+            builder.Password = "alumno";
             AccesoDatos.cadena_conexion = builder.ConnectionString;
+
+            //AccesoDatos.cadena_conexion = @"Server=localhost\SQLEXPRESS;Database=Test;Trusted_Connection=True;";
+
         }
 
         public AccesoDatos()
@@ -94,8 +99,8 @@ namespace Entidades
             bool rta = true;
             try
             {
-                string sql = "INSERT INTO Jugadores (Nombre, Puntos, victorias, Turnos) VALUES(";
-                sql = sql + "'" + jugador.Nombre.ToString() + "'," + jugador.Puntaje + "," + jugador.Victorias + "," + jugador.Turnos + ")";
+                string sql = "INSERT INTO Jugadores (Nombre, Puntaje, victorias) VALUES(";
+                sql = sql + "'" + jugador.Nombre.ToString() + "'," + jugador.Puntaje + "," + jugador.Victorias + ")";
 
                 this.comando = new SqlCommand();
                 this.comando.CommandType = CommandType.Text;

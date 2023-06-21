@@ -52,6 +52,10 @@ internal class Program
         //    Console.WriteLine(salaJuego1.Jugador1.Nombre);
         //}
 
+        AccesoDatos accesoDatos = new AccesoDatos();
+        Jugador jugador = new Jugador("kevin");
+
+        accesoDatos.AgregarDatoJugador(jugador);
 
     }
 }
