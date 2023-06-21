@@ -38,31 +38,31 @@
             // lblNameJugadorUno
             // 
             lblNameJugadorUno.AutoSize = true;
-            lblNameJugadorUno.Location = new Point(36, 53);
+            lblNameJugadorUno.Location = new Point(12, 58);
             lblNameJugadorUno.Name = "lblNameJugadorUno";
-            lblNameJugadorUno.Size = new Size(38, 15);
+            lblNameJugadorUno.Size = new Size(108, 15);
             lblNameJugadorUno.TabIndex = 0;
-            lblNameJugadorUno.Text = "label1";
+            lblNameJugadorUno.Text = "Nombre Jugador 1:\r\n";
             // 
             // lblNameJugadorDos
             // 
             lblNameJugadorDos.AutoSize = true;
-            lblNameJugadorDos.Location = new Point(36, 91);
+            lblNameJugadorDos.Location = new Point(12, 91);
             lblNameJugadorDos.Name = "lblNameJugadorDos";
-            lblNameJugadorDos.Size = new Size(38, 15);
+            lblNameJugadorDos.Size = new Size(108, 15);
             lblNameJugadorDos.TabIndex = 1;
-            lblNameJugadorDos.Text = "label2";
+            lblNameJugadorDos.Text = "Nombre Jugador 2:";
             // 
             // txtJugadorUno
             // 
-            txtJugadorUno.Location = new Point(80, 45);
+            txtJugadorUno.Location = new Point(132, 50);
             txtJugadorUno.Name = "txtJugadorUno";
             txtJugadorUno.Size = new Size(100, 23);
             txtJugadorUno.TabIndex = 2;
             // 
             // txtJugadorDos
             // 
-            txtJugadorDos.Location = new Point(80, 83);
+            txtJugadorDos.Location = new Point(132, 83);
             txtJugadorDos.Name = "txtJugadorDos";
             txtJugadorDos.Size = new Size(100, 23);
             txtJugadorDos.TabIndex = 3;
@@ -70,7 +70,7 @@
             // 
             // btnCrear
             // 
-            btnCrear.Location = new Point(80, 145);
+            btnCrear.Location = new Point(157, 155);
             btnCrear.Name = "btnCrear";
             btnCrear.Size = new Size(75, 23);
             btnCrear.TabIndex = 4;
@@ -82,7 +82,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(206, 208);
+            ClientSize = new Size(244, 208);
             Controls.Add(btnCrear);
             Controls.Add(txtJugadorDos);
             Controls.Add(txtJugadorUno);
@@ -90,6 +90,7 @@
             Controls.Add(lblNameJugadorUno);
             Name = "FrmGenerarJugadores";
             Text = "FrmGenerarJugadores";
+            Load += FrmGenerarJugadores_Load;
             ResumeLayout(false);
             PerformLayout();
         }

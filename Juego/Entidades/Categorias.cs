@@ -104,49 +104,68 @@ namespace Entidades
         }
         public bool EsPoker(List<int> dados)
         {
-            foreach (int dado in dados)
+            bool retorno = false;
+            if (dados.Count > 0)
             {
-                int contador = 0;
-                foreach (int otroDado in dados)
+                foreach (int dado in dados)
                 {
-                    if (dado == otroDado)
+                    int contador = 0;
+                    foreach (int otroDado in dados)
                     {
-                        contador++;
+                        if (dado == otroDado)
+                        {
+                            contador++;
+                        }
+                    }
+                    if (contador == 4)
+                    {
+                        retorno = true;
                     }
                 }
-                if (contador == 4)
-                {
-                    return true;
-                }
             }
-            return false;
+            
+            return retorno;
         }
 
         public bool EsFull(List<int> dados)
         {
             bool retorno = false;
-            dados.Sort();
-            if (dados[0] == dados[1] && dados[1] == dados[2] && dados[3] == dados[4] || dados[0] == dados[1] && dados[2] == dados[3] && dados[3] == dados[4])
+            try
             {
-                retorno = true;
+                if (dados.Count > 0)
+                {
+                    dados.Sort();
+                    if (dados[0] == dados[1] && dados[1] == dados[2] && dados[3] == dados[4] || dados[0] == dados[1] && dados[2] == dados[3] && dados[3] == dados[4])
+                    {
+                        retorno = true;
+                    }
+                }
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine($"{e.StackTrace} - {e.Message}");
             }
             return retorno;
+
         }
 
         public bool EsEscaleraMenor(List<int> dados)
         {
-            dados.Sort();
             bool retorno = false;
-            for (int i = 0; i < dados.Count - 1; i++)
+            if (dados.Count > 0)
             {
-                if (dados[i] + 1 == dados[i + 1] && dados[0] == 1) 
+                dados.Sort();
+                for (int i = 0; i < dados.Count - 1; i++)
                 {
-                    retorno = true;
-                }
-                else
-                {
-                    retorno = false;
-                    break;
+                    if (dados[i] + 1 == dados[i + 1] && dados[0] == 1)
+                    {
+                        retorno = true;
+                    }
+                    else
+                    {
+                        retorno = false;
+                        break;
+                    }
                 }
             }
             return retorno;
@@ -154,18 +173,22 @@ namespace Entidades
 
         public bool EsEscaleraMayor(List<int> dados)
         {
-            dados.Sort();
             bool retorno = false;
-            for (int i = 0; i < dados.Count - 1; i++)
+            if (dados.Count > 0)
             {
-                if (dados[i] + 1 == dados[i + 1] && dados[0] == 2)
+                dados.Sort();
+                
+                for (int i = 0; i < dados.Count - 1; i++)
                 {
-                    retorno = true;
-                }
-                else
-                {
-                    retorno = false;
-                    break;
+                    if (dados[i] + 1 == dados[i + 1] && dados[0] == 2)
+                    {
+                        retorno = true;
+                    }
+                    else
+                    {
+                        retorno = false;
+                        break;
+                    }
                 }
             }
             return retorno;
@@ -174,9 +197,13 @@ namespace Entidades
         public bool EsGeneralaReal(List<int> dados)
         {
             bool retorno = false;
-            if (dados[0] == 1 && dados[0] == dados[1] && dados[0] == dados[2] && dados[0] == dados[3] && dados[0] == dados[4])
+            if (dados.Count > 0)
             {
-                retorno = true;
+                
+                if (dados[0] == 1 && dados[0] == dados[1] && dados[0] == dados[2] && dados[0] == dados[3] && dados[0] == dados[4])
+                {
+                    retorno = true;
+                }
             }
             return retorno;
         }

@@ -4,13 +4,13 @@ namespace Aplicacion02
 {
     public partial class FrmGenerarJugadores : Form
     {
-
         Jugador jugador1;
         Jugador jugador2;
 
         public FrmGenerarJugadores()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         public Jugador Jugador1
@@ -41,6 +41,11 @@ namespace Aplicacion02
             {
                 MessageBox.Show("Ingrese los datos correspondientes.");
             }
+        }
+
+        private void FrmGenerarJugadores_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

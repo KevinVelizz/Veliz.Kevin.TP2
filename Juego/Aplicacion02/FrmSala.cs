@@ -8,13 +8,16 @@ namespace Aplicacion02
         private SalaJuego sala;
         private AccesoDatos acceso;
         private CancellationTokenSource cancellationTokenSource;
+        private static List<SalaJuego> salas;
 
         public delegate void CallBack(DataGridView dtgvJugador, Jugador jugador);
 
         public FrmSala()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.acceso = new AccesoDatos();
+            salas = new List<SalaJuego>();
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
@@ -46,7 +49,7 @@ namespace Aplicacion02
             }
         }
 
-        public void ModificarDataGrid(DataGridView dtgvJugador, Jugador jugador)
+        private void ModificarDataGrid(DataGridView dtgvJugador, Jugador jugador)
         {
             if (this.InvokeRequired)
             {
@@ -69,13 +72,29 @@ namespace Aplicacion02
             }
         }
 
+        private void ModificarLabelPuntosJugadores(Jugador jugadorUno, Jugador jugadorDos)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action<Jugador, Jugador>(ModificarLabelPuntosJugadores), jugadorUno, jugadorDos);
+            }
+            else
+            {
+                this.lblPuntajeJugador1.Text = jugadorUno.Puntaje.ToString();
+                this.lblPuntajeJugador2.Text = jugadorDos.Puntaje.ToString();
+            }
+        }
+
         private void SalaTerminadaEventHandler(object sender, EventArgs e)
         {
             SalaJuego salaJuego = (SalaJuego)sender;
-            this.acceso.AgregarDato(this.sala.Jugador1);
-            this.acceso.AgregarDato(this.sala.Jugador2);
-            this.lblPuntajeJugador1.Text = salaJuego.Jugador1.Puntaje.ToString();
-            this.lblPuntajeJugador2.Text = salaJuego.Jugador2.Puntaje.ToString();
+            this.acceso.AgregarDatoJugador(this.sala.Jugador1);
+            this.acceso.AgregarDatoJugador(this.sala.Jugador2);
+            salas.Add(salaJuego);
+            Archivos.SerealizarSalas(salas);
+
+            this.ModificarLabelPuntosJugadores(salaJuego.Jugador1, salaJuego.Jugador2);
+
             if (salaJuego.Jugador1.Puntaje > salaJuego.Jugador2.Puntaje)
             {
                 MessageBox.Show($"El ganador es: {salaJuego.Jugador1.Nombre}");
@@ -153,6 +172,7 @@ namespace Aplicacion02
             }
         }
 
+        
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.cancellationTokenSource.Cancel();

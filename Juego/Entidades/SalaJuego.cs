@@ -3,20 +3,27 @@
     public class SalaJuego
     {
         private bool jugando = true;
-        private static int contadorSalas = 0;
+        private static int contadorJugadores = 0;
         private int id;
         private Jugador jugador1;
         private Jugador jugador2;
+        private string nombreJugadorGanador;
 
         public event EventHandler SalaTerminada;
         public event ActualizarCategoriasEventHandler ActualizarCategorias;
 
+        public SalaJuego()
+        {
+
+        }
+
         public SalaJuego(string nombreJugador1, string nombreJugador2)
         {
-            this.id = ++contadorSalas;
+            this.id = ++contadorJugadores;
             this.jugador1 = new Jugador(nombreJugador1);
             this.jugador2 = new Jugador(nombreJugador2);
         }
+       
 
         public int Id
         {
@@ -35,9 +42,15 @@
             get { return this.jugador2; }
             set { this.jugador2 = value; }
         }
+
+        public string NombreJugadorGanador
+        {
+            get { return this.nombreJugadorGanador; }
+            set { this.nombreJugadorGanador = value; }
+        }
         public void Jugar(CancellationTokenSource cancellationTokenSource)
         {
-            while(this.jugando && !cancellationTokenSource.IsCancellationRequested)
+            do
             {
                 this.jugador1.LanzarDados();
                 this.OnActualizarCategorias(this.jugador1);
@@ -49,7 +62,7 @@
                 {
                     this.Terminar();
                 }
-            } 
+            } while (this.jugando && !cancellationTokenSource.IsCancellationRequested);
             this.Terminar();
         }
 
@@ -57,12 +70,12 @@
         {
             if (this.jugador1.Puntaje > this.jugador2.Puntaje)
             {
-                this.jugador1.Victorias += 1;
+                this.nombreJugadorGanador = this.jugador1.Nombre;
                 Console.WriteLine($"El ganador es:{this.jugador1.Nombre}");
             }
             else
             {
-                this.jugador2.Victorias += 1;
+                this.nombreJugadorGanador = this.jugador2.Nombre;
                 Console.WriteLine($"El ganador es: {this.jugador2.Nombre}");
             }
             this.jugando = false;
@@ -72,7 +85,10 @@
 
         private void OnSalaTerminada()
         {
-            SalaTerminada?.Invoke(this, EventArgs.Empty);
+            if (SalaTerminada is not null)
+            {
+                SalaTerminada?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         private bool TerminarSala()

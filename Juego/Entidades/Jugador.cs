@@ -1,10 +1,13 @@
 ﻿
+using System.Text;
+
 namespace Entidades
 {
     public class Jugador : IJugador
     {
         private int id;
         private string nombre;
+        private static int contadorJugadores = 0;
         private int puntaje;
         private int victorias;
         private int turnos;
@@ -15,6 +18,7 @@ namespace Entidades
 
         private Jugador() 
         {
+            this.id = ++contadorJugadores;
             this.categorias = new Categorias();
             this.listaCategorias = new List<Dictionary<string, bool>>();
         }
@@ -89,6 +93,21 @@ namespace Entidades
         private void OnActualizarDados(List<int> dados)
         {
             this.ActualizarDados?.Invoke(dados);
+        }
+
+        private string MostrarDatos()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"{this.id}");
+            sb.AppendLine($"{this.nombre}");
+            sb.AppendLine($"{this.puntaje}");
+            return sb.ToString();
+        }
+
+        public override string ToString()
+        {
+            return this.MostrarDatos();
         }
     }
 }
