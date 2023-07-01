@@ -63,7 +63,5 @@ namespace Entidades
             }
             return listaSalas;
         }
-
-
     }
 }

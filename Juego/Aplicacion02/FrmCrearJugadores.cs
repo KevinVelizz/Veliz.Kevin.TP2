@@ -2,12 +2,12 @@
 
 namespace Aplicacion02
 {
-    public partial class FrmGenerarJugadores : Form
+    public partial class FrmCrearJugadores : Form
     {
         Jugador jugador1;
         Jugador jugador2;
 
-        public FrmGenerarJugadores()
+        public FrmCrearJugadores()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -31,15 +31,15 @@ namespace Aplicacion02
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            if (this.txtJugadorDos.Text != "" && this.txtJugadorUno.Text != "")
+            try
             {
                 this.jugador1 = new Jugador(this.txtJugadorUno.Text);
-                this.jugador2 = new Jugador(this.txtJugadorDos.Text);
-                this.DialogResult = DialogResult.OK;
+                Soporte.SubirJugador(this.jugador1);
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Ingrese los datos correspondientes.");
+                this.lblAdvertencia.Visible = true;
+                this.lblAdvertencia.Text = $"{ex.Message}";
             }
         }
 

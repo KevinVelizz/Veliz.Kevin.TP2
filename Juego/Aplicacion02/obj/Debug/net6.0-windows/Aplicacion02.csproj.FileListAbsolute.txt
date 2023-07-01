@@ -20,7 +20,6 @@ C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\bin\Debug\net6.0-windo
 C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\bin\Debug\net6.0-windows\Entidades.pdb
 C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\obj\Debug\net6.0-windows\Aplicacion02.csproj.CopyComplete
 C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\obj\Debug\net6.0-windows\Aplicacion02.FrmSala.resources
-C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\obj\Debug\net6.0-windows\Aplicacion02.FrmGenerarJugadores.resources
 C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\bin\Debug\net6.0-windows\System.Data.SqlClient.dll
 C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\bin\Debug\net6.0-windows\runtimes\win-arm64\native\sni.dll
 C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\bin\Debug\net6.0-windows\runtimes\win-x64\native\sni.dll
@@ -28,3 +27,5 @@ C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\bin\Debug\net6.0-windo
 C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\obj\Debug\net6.0-windows\Aplicacion02.FrmEstadistica.resources
+C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\obj\Debug\net6.0-windows\Aplicacion02.FrmCrearJugadores.resources
+C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\obj\Debug\net6.0-windows\Aplicacion02.FrmSeleccionarJugadores.resources

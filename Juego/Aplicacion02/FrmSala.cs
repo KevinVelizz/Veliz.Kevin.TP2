@@ -6,7 +6,6 @@ namespace Aplicacion02
     {
 
         private SalaJuego sala;
-        private AccesoDatos acceso;
         private CancellationTokenSource cancellationTokenSource;
         private static List<SalaJuego> salas;
 
@@ -16,7 +15,6 @@ namespace Aplicacion02
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.acceso = new AccesoDatos();
             salas = new List<SalaJuego>();
         }
 
@@ -27,7 +25,7 @@ namespace Aplicacion02
 
         private void btnGenerarSalas_Click(object sender, EventArgs e)
         {
-            FrmGenerarJugadores frmGenerarJugadores = new FrmGenerarJugadores();
+            FrmCrearJugadores frmGenerarJugadores = new FrmCrearJugadores();
             frmGenerarJugadores.ShowDialog();
             if (frmGenerarJugadores.DialogResult == DialogResult.OK)
             {
@@ -68,7 +66,6 @@ namespace Aplicacion02
                         dtgvJugador.Rows[rows].Cells[1].Value = kvp.Value;
                     }
                 }
-                this.btnJugar.Enabled = true;
             }
         }
 
@@ -88,8 +85,8 @@ namespace Aplicacion02
         private void SalaTerminadaEventHandler(object sender, EventArgs e)
         {
             SalaJuego salaJuego = (SalaJuego)sender;
-            this.acceso.AgregarDatoJugador(this.sala.Jugador1);
-            this.acceso.AgregarDatoJugador(this.sala.Jugador2);
+            Soporte.SubirJugador(this.sala.Jugador1);
+            Soporte.SubirJugador(this.sala.Jugador2);
             salas.Add(salaJuego);
             Archivos.SerealizarSalas(salas);
 
@@ -108,17 +105,17 @@ namespace Aplicacion02
 
         private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            try
-            {
-                if (this.sala is not null)
-                {
-                    this.sala.Terminar();
-                }
-            }
-            catch (NullReferenceException ex)
-            {
-                MessageBox.Show($"{ex.Message} - {ex.StackTrace}");
-            }
+            //try
+            //{
+            //    if (this.sala is not null)
+            //    {
+            //        this.sala.Terminar();
+            //    }
+            //}
+            //catch (NullReferenceException ex)
+            //{
+            //    MessageBox.Show($"{ex.Message} - {ex.StackTrace}");
+            //}
         }
 
         private void ActualizarDadosEventHandler(List<int> dados)
@@ -131,7 +128,7 @@ namespace Aplicacion02
 
             this.picDado04.Image = this.DevolverImagen(dados[3]);
 
-            this.picDado05.Image = this.DevolverImagen(dados[4]);
+            this.picDado05.Image = this.DevolverImagen(7);
         }
 
         private Bitmap DevolverImagen(int indice)
@@ -171,7 +168,6 @@ namespace Aplicacion02
                 this.ModificarDataGrid(this.dtgvJugador2, jugador);
             }
         }
-
         
         private void btnCancelar_Click(object sender, EventArgs e)
         {

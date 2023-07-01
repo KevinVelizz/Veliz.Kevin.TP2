@@ -51,7 +51,18 @@ internal class Program
         //{
         //    Console.WriteLine(salaJuego1.Jugador1.Nombre);
         //}
+        
+        Jugador jugador1 = new Jugador("Juan");
+        
+        AccesoDatos accesoDatos = new AccesoDatos();
 
+
+        List<Jugador> jugadors = Soporte.ObtenerJugadores();
+
+        foreach (Jugador jugador in  jugadors)
+        {
+            Console.WriteLine(jugador.Nombre);
+        }   
 
     }
 }

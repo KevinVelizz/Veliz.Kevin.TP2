@@ -11,15 +11,14 @@
 
         private void btnGenerarSala_Click_1(object sender, EventArgs e)
         {
-            Task task = new Task(GenerarFormulario);
-            task.Start();
+            this.GenerarFormulario();
         }
 
         private void GenerarFormulario()
         {
             FrmSala formulario = new FrmSala();
             formulario.Text = "Nueva Sala";
-            Application.Run(formulario);
+            formulario.Show();
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
@@ -32,6 +31,16 @@
             FrmEstadistica frmEstadistica = new FrmEstadistica();
             frmEstadistica.ShowDialog();
 
+        }
+
+        private void btnCrearJugadores_Click(object sender, EventArgs e)
+        {
+            FrmCrearJugadores frmCrearJugadores = new FrmCrearJugadores();
+            frmCrearJugadores.ShowDialog();
+            if (frmCrearJugadores.DialogResult == DialogResult.OK)
+            {
+
+            }
         }
     }
 }

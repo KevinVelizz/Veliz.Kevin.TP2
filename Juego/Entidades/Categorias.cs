@@ -132,13 +132,10 @@ namespace Entidades
             bool retorno = false;
             try
             {
-                if (dados.Count > 0)
+                dados.Sort();
+                if (dados[0] == dados[1] && dados[1] == dados[2] && dados[3] == dados[4] || dados[0] == dados[1] && dados[2] == dados[3] && dados[3] == dados[4])
                 {
-                    dados.Sort();
-                    if (dados[0] == dados[1] && dados[1] == dados[2] && dados[3] == dados[4] || dados[0] == dados[1] && dados[2] == dados[3] && dados[3] == dados[4])
-                    {
-                        retorno = true;
-                    }
+                    retorno = true;
                 }
             }
             catch (ArgumentOutOfRangeException e)
@@ -146,7 +143,6 @@ namespace Entidades
                 Console.WriteLine($"{e.StackTrace} - {e.Message}");
             }
             return retorno;
-
         }
 
         public bool EsEscaleraMenor(List<int> dados)

@@ -7,7 +7,6 @@ namespace Entidades
     {
         private int id;
         private string nombre;
-        private static int contadorJugadores = 0;
         private int puntaje;
         private int victorias;
         private int turnos;
@@ -16,16 +15,24 @@ namespace Entidades
         private List<Dictionary<string, bool>> listaCategorias;
         public event ActualizarDadosEventHandler ActualizarDados;
 
-        private Jugador() 
+        public Jugador() 
         {
-            this.id = ++contadorJugadores;
             this.categorias = new Categorias();
             this.listaCategorias = new List<Dictionary<string, bool>>();
+            this.puntaje = 0;
+            this.victorias = 0;
         }
         
         public Jugador(string nombre) :this()
         {
-            this.nombre = nombre;
+            if (this.CompararNombre(nombre))
+            {
+                throw new Exception("Ya existe un jugador con ese nombre.");
+            }
+            else
+            {
+                this.nombre = ValidarCampo(nombre);
+            }
         }
 
         public int Id
@@ -90,6 +97,30 @@ namespace Entidades
             return dados;
         }
 
+
+        private bool CompararNombre(string nombre)
+        {
+            bool retorno = false;
+            foreach (Jugador jugador in Soporte.ObtenerJugadores())
+            {
+                if (jugador.Nombre == nombre)
+                {
+                    retorno = true;
+                }
+            }
+            return retorno;
+        }
+        private string ValidarCampo(string campo)
+        {
+            string campoValidado = "";
+            if (string.IsNullOrEmpty(campo))
+            {
+                throw new Exception("Completar el campo.");
+            }
+            campoValidado = campo;
+            return campoValidado;
+        }
+
         private void OnActualizarDados(List<int> dados)
         {
             this.ActualizarDados?.Invoke(dados);
@@ -98,7 +129,6 @@ namespace Entidades
         private string MostrarDatos()
         {
             StringBuilder sb = new StringBuilder();
-
             sb.AppendLine($"{this.id}");
             sb.AppendLine($"{this.nombre}");
             sb.AppendLine($"{this.puntaje}");

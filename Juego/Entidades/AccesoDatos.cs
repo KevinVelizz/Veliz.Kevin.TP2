@@ -18,7 +18,7 @@ namespace Entidades
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
             builder.DataSource = @".";
             builder.IntegratedSecurity = true;
-            builder.InitialCatalog = "generala";
+            builder.InitialCatalog = "generala_db";
             AccesoDatos.cadena_conexion = builder.ConnectionString;
         }
 
@@ -56,21 +56,18 @@ namespace Entidades
             {
                 this.comando = new SqlCommand();
                 this.comando.CommandType = CommandType.Text;
-                this.comando.CommandText = "SELECT ID, Nombre,Puntos,Victorias,Turnos FROM Jugadores";
+                this.comando.CommandText = "SELECT * FROM Jugadores";
                 this.comando.Connection = this.conexion;
-
                 this.conexion.Open();
-
                 this.lector = comando.ExecuteReader();
 
                 while (lector.Read())
                 {
-                    Jugador jugador = new Jugador(lector[1].ToString());
-                    jugador.Id = (int)lector["id"];
-                    jugador.Nombre = lector[1].ToString();
-                    jugador.Puntaje = (int)lector[2];
-                    jugador.Victorias = (int)lector[3];
-                    jugador.Turnos = (int)lector[4];
+                    Jugador jugador = new Jugador();
+                    jugador.Id = (int)lector["ID"];
+                    jugador.Nombre = lector["Nombre"].ToString();
+                    jugador.Puntaje = (int)lector["Puntos"];
+                    jugador.Victorias = (int)lector["Victorias"];
                     lista.Add(jugador);
                 }
                 lector.Close();
@@ -94,8 +91,8 @@ namespace Entidades
             bool rta = true;
             try
             {
-                string sql = "INSERT INTO Jugadores (Nombre, Puntos, victorias, Turnos) VALUES(";
-                sql = sql + "'" + jugador.Nombre.ToString() + "'," + jugador.Puntaje + "," + jugador.Victorias + "," + jugador.Turnos + ")";
+                string sql = "INSERT INTO Jugadores (Nombre, Puntos, Victorias) VALUES(";
+                sql = sql + "'" + jugador.Nombre.ToString() + "'," + jugador.Puntaje + "," + jugador.Victorias + ")";
 
                 this.comando = new SqlCommand();
                 this.comando.CommandType = CommandType.Text;

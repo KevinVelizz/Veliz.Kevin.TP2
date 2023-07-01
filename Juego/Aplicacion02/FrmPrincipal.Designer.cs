@@ -32,6 +32,7 @@
             pictureBox1 = new PictureBox();
             label1 = new Label();
             button1 = new Button();
+            btnCrearJugadores = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -75,11 +76,22 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // btnCrearJugadores
+            // 
+            btnCrearJugadores.Location = new Point(208, 376);
+            btnCrearJugadores.Name = "btnCrearJugadores";
+            btnCrearJugadores.Size = new Size(86, 39);
+            btnCrearJugadores.TabIndex = 4;
+            btnCrearJugadores.Text = "Crear jugadores";
+            btnCrearJugadores.UseVisualStyleBackColor = true;
+            btnCrearJugadores.Click += btnCrearJugadores_Click;
+            // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnCrearJugadores);
             Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
@@ -98,5 +110,6 @@
         private PictureBox pictureBox1;
         private Label label1;
         private Button button1;
+        private Button btnCrearJugadores;
     }
 }

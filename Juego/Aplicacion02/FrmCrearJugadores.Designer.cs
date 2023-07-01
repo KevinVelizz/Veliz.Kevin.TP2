@@ -1,6 +1,6 @@
 ﻿namespace Aplicacion02
 {
-    partial class FrmGenerarJugadores
+    partial class FrmCrearJugadores
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             lblNameJugadorUno = new Label();
-            lblNameJugadorDos = new Label();
             txtJugadorUno = new TextBox();
-            txtJugadorDos = new TextBox();
             btnCrear = new Button();
+            lblAdvertencia = new Label();
             SuspendLayout();
             // 
             // lblNameJugadorUno
@@ -40,37 +39,20 @@
             lblNameJugadorUno.AutoSize = true;
             lblNameJugadorUno.Location = new Point(12, 58);
             lblNameJugadorUno.Name = "lblNameJugadorUno";
-            lblNameJugadorUno.Size = new Size(108, 15);
+            lblNameJugadorUno.Size = new Size(54, 15);
             lblNameJugadorUno.TabIndex = 0;
-            lblNameJugadorUno.Text = "Nombre Jugador 1:\r\n";
-            // 
-            // lblNameJugadorDos
-            // 
-            lblNameJugadorDos.AutoSize = true;
-            lblNameJugadorDos.Location = new Point(12, 91);
-            lblNameJugadorDos.Name = "lblNameJugadorDos";
-            lblNameJugadorDos.Size = new Size(108, 15);
-            lblNameJugadorDos.TabIndex = 1;
-            lblNameJugadorDos.Text = "Nombre Jugador 2:";
+            lblNameJugadorUno.Text = "Nombre:";
             // 
             // txtJugadorUno
             // 
-            txtJugadorUno.Location = new Point(132, 50);
+            txtJugadorUno.Location = new Point(82, 50);
             txtJugadorUno.Name = "txtJugadorUno";
-            txtJugadorUno.Size = new Size(100, 23);
+            txtJugadorUno.Size = new Size(166, 23);
             txtJugadorUno.TabIndex = 2;
-            // 
-            // txtJugadorDos
-            // 
-            txtJugadorDos.Location = new Point(132, 83);
-            txtJugadorDos.Name = "txtJugadorDos";
-            txtJugadorDos.Size = new Size(100, 23);
-            txtJugadorDos.TabIndex = 3;
-            txtJugadorDos.TextChanged += textBox2_TextChanged;
             // 
             // btnCrear
             // 
-            btnCrear.Location = new Point(157, 155);
+            btnCrear.Location = new Point(233, 173);
             btnCrear.Name = "btnCrear";
             btnCrear.Size = new Size(75, 23);
             btnCrear.TabIndex = 4;
@@ -78,17 +60,26 @@
             btnCrear.UseVisualStyleBackColor = true;
             btnCrear.Click += btnCrear_Click;
             // 
-            // FrmGenerarJugadores
+            // lblAdvertencia
+            // 
+            lblAdvertencia.AutoSize = true;
+            lblAdvertencia.Location = new Point(82, 86);
+            lblAdvertencia.Name = "lblAdvertencia";
+            lblAdvertencia.Size = new Size(38, 15);
+            lblAdvertencia.TabIndex = 5;
+            lblAdvertencia.Text = "label1";
+            lblAdvertencia.Visible = false;
+            // 
+            // FrmCrearJugadores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(244, 208);
+            ClientSize = new Size(320, 208);
+            Controls.Add(lblAdvertencia);
             Controls.Add(btnCrear);
-            Controls.Add(txtJugadorDos);
             Controls.Add(txtJugadorUno);
-            Controls.Add(lblNameJugadorDos);
             Controls.Add(lblNameJugadorUno);
-            Name = "FrmGenerarJugadores";
+            Name = "FrmCrearJugadores";
             Text = "FrmGenerarJugadores";
             Load += FrmGenerarJugadores_Load;
             ResumeLayout(false);
@@ -98,9 +89,8 @@
         #endregion
 
         private Label lblNameJugadorUno;
-        private Label lblNameJugadorDos;
         private TextBox txtJugadorUno;
-        private TextBox txtJugadorDos;
         private Button btnCrear;
+        private Label lblAdvertencia;
     }
 }
