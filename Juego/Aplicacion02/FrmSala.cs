@@ -18,6 +18,7 @@ namespace Aplicacion02
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             salas = new List<SalaJuego>();
+           
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
@@ -117,6 +118,7 @@ namespace Aplicacion02
             //catch (NullReferenceException ex)
             //{
             //    MessageBox.Show($"{ex.Message} - {ex.StackTrace}");
+            //joladasdsa
             //}
         }
 
