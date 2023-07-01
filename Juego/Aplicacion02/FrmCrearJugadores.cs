@@ -5,7 +5,6 @@ namespace Aplicacion02
     public partial class FrmCrearJugadores : Form
     {
         Jugador jugador1;
-        Jugador jugador2;
 
         public FrmCrearJugadores()
         {
@@ -19,22 +18,14 @@ namespace Aplicacion02
             set { this.jugador1 = value; }
         }
 
-        public Jugador Jugador2
-        {
-            get { return this.jugador2; }
-            set { this.jugador2 = value; }
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-        }
+        
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
             try
             {
                 this.jugador1 = new Jugador(this.txtJugadorUno.Text);
-                Soporte.SubirJugador(this.jugador1);
+                Soporte.AgregarJugador(this.jugador1);
             }
             catch (Exception ex)
             {

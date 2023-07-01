@@ -16,20 +16,17 @@ namespace Aplicacion02
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private void btnTraerJugadores_Click(object sender, EventArgs e)
+
+
+        private void FrmEstadistica_Load(object sender, EventArgs e)
         {
             this.jugadores = accesoDatos.ObtenerListaDatoJugadores();
             if (this.jugadores.Count > 0)
             {
                 this.dtgvJugadores.DataSource = this.jugadores;
             }
-            this.salas = Archivos.DeserealizarSalas();
+            this.salas = Soporte.ArchivoJson.Deserealizar();
             this.dtgvSalas.DataSource = this.salas;
-        }
-
-        private void FrmEstadistica_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

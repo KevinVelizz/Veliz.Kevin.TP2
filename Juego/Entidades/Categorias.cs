@@ -1,5 +1,7 @@
 ﻿
 
+using System.Xml.Serialization;
+
 namespace Entidades
 {
     public class Categorias
@@ -22,6 +24,7 @@ namespace Entidades
             }
         }
 
+        [XmlIgnore]
         public Dictionary<string, bool> CategoriaRealizada
         {
             get { return this.categoriaRealizada; }

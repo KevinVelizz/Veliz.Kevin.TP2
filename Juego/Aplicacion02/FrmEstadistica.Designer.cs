@@ -28,22 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnTraerJugadores = new Button();
             dtgvSalas = new DataGridView();
             dtgvJugadores = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)dtgvSalas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtgvJugadores).BeginInit();
             SuspendLayout();
-            // 
-            // btnTraerJugadores
-            // 
-            btnTraerJugadores.Location = new Point(12, 226);
-            btnTraerJugadores.Name = "btnTraerJugadores";
-            btnTraerJugadores.Size = new Size(96, 49);
-            btnTraerJugadores.TabIndex = 0;
-            btnTraerJugadores.Text = "Update";
-            btnTraerJugadores.UseVisualStyleBackColor = true;
-            btnTraerJugadores.Click += btnTraerJugadores_Click;
             // 
             // dtgvSalas
             // 
@@ -70,7 +59,6 @@
             ClientSize = new Size(543, 295);
             Controls.Add(dtgvJugadores);
             Controls.Add(dtgvSalas);
-            Controls.Add(btnTraerJugadores);
             Name = "FrmEstadistica";
             Text = "FrmEstadistica";
             Load += FrmEstadistica_Load;
@@ -80,8 +68,6 @@
         }
 
         #endregion
-
-        private Button btnTraerJugadores;
         private DataGridView dtgvSalas;
         private DataGridView dtgvJugadores;
     }

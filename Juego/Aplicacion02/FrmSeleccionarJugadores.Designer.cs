@@ -33,6 +33,7 @@
             lblJugador01 = new Label();
             lblJugador02 = new Label();
             btnCrear = new Button();
+            lblMensajeError = new Label();
             SuspendLayout();
             // 
             // cboJugadores01
@@ -79,12 +80,24 @@
             btnCrear.TabIndex = 4;
             btnCrear.Text = "Crear";
             btnCrear.UseVisualStyleBackColor = true;
+            btnCrear.Click += btnCrear_Click;
+            // 
+            // lblMensajeError
+            // 
+            lblMensajeError.AutoSize = true;
+            lblMensajeError.Location = new Point(17, 76);
+            lblMensajeError.Name = "lblMensajeError";
+            lblMensajeError.Size = new Size(38, 15);
+            lblMensajeError.TabIndex = 5;
+            lblMensajeError.Text = "label1";
+            lblMensajeError.Visible = false;
             // 
             // FrmSeleccionarJugadores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(603, 237);
+            Controls.Add(lblMensajeError);
             Controls.Add(btnCrear);
             Controls.Add(lblJugador02);
             Controls.Add(lblJugador01);
@@ -104,5 +117,6 @@
         private Label lblJugador01;
         private Label lblJugador02;
         private Button btnCrear;
+        private Label lblMensajeError;
     }
 }

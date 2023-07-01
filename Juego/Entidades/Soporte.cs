@@ -1,29 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Entidades
 {
     public static class Soporte
     {
-        static AccesoDatos AccesoDatos; 
-        
+        static AccesoDatos accesoDatos;
+        static ArchivoJson<SalaJuego> archivoJson;
+        static ArchivosXML<SalaJuego> archivosXML;
+
+        public static ArchivoJson<SalaJuego> ArchivoJson { get => archivoJson; }
+        public static ArchivosXML<SalaJuego> ArchivosXML { get => archivosXML; }
+
         static Soporte()
         {
-            AccesoDatos = new AccesoDatos();
+            accesoDatos = new AccesoDatos();
         }
 
-        public static void SubirJugador(Jugador jugador)
+        public static List<Jugador> ObtenerValoresJugadores()
         {
-            AccesoDatos.AgregarDatoJugador(jugador);
+            return accesoDatos.ObtenerListaDatoJugadores();
         }
 
-        public static List<Jugador> ObtenerJugadores()
+        public static bool AgregarJugador(Jugador jugador)
         {
-            return AccesoDatos.ObtenerListaDatoJugadores();
+            return accesoDatos.AgregarDatoJugador(jugador);
         }
-
     }
 }

@@ -28,11 +28,11 @@ namespace Aplicacion02
 
         private void btnGenerarSalas_Click(object sender, EventArgs e)
         {
-            FrmCrearJugadores frmGenerarJugadores = new FrmCrearJugadores();
-            frmGenerarJugadores.ShowDialog();
-            if (frmGenerarJugadores.DialogResult == DialogResult.OK)
+            FrmSeleccionarJugadores frmSeleccionarJugadores = new FrmSeleccionarJugadores();
+            frmSeleccionarJugadores.ShowDialog();
+            if (frmSeleccionarJugadores.DialogResult == DialogResult.OK)
             {
-                this.sala = new SalaJuego(frmGenerarJugadores.Jugador1.Nombre, frmGenerarJugadores.Jugador2.Nombre);
+                this.sala = new SalaJuego(frmSeleccionarJugadores.Jugador1, frmSeleccionarJugadores.Jugador2);
                 this.lblNombreJugador1.Text = this.sala.Jugador1.Nombre;
                 this.lblNombreJugador2.Text = this.sala.Jugador2.Nombre;
 
@@ -88,10 +88,11 @@ namespace Aplicacion02
         private void SalaTerminadaEventHandler(object sender, EventArgs e)
         {
             SalaJuego salaJuego = (SalaJuego)sender;
-            Soporte.SubirJugador(this.sala.Jugador1);
-            Soporte.SubirJugador(this.sala.Jugador2);
+            Soporte.AgregarJugador(this.sala.Jugador1);
+            Soporte.AgregarJugador(this.sala.Jugador2);
             salas.Add(salaJuego);
-            Archivos.SerealizarSalas(salas);
+            Soporte.ArchivosXML.Serealizar(salas);
+            Soporte.ArchivoJson.Serealizar(salas);
 
             this.ModificarLabelPuntosJugadores(salaJuego.Jugador1, salaJuego.Jugador2);
 
@@ -132,32 +133,41 @@ namespace Aplicacion02
 
             this.picDado04.Image = this.DevolverImagen(dados[3]);
 
-            this.picDado05.Image = this.DevolverImagen(7);
+            this.picDado05.Image = this.DevolverImagen(dados[4]);
         }
 
         private Bitmap DevolverImagen(int indice)
         {
-            switch (indice)
+
+            try
             {
-                case 1:
-                    return Properties.Resources.dado1;
+                switch (indice)
+                {
+                    case 1:
+                        return Properties.Resources.dado1;
 
-                case 2:
-                    return Properties.Resources.dado2;
+                    case 2:
+                        return Properties.Resources.dado2;
 
-                case 3:
-                    return Properties.Resources.dado3;
+                    case 3:
+                        return Properties.Resources.dado3;
 
-                case 4:
-                    return Properties.Resources.dado4;
+                    case 4:
+                        return Properties.Resources.dado4;
 
-                case 5:
-                    return Properties.Resources.dado5;
+                    case 5:
+                        return Properties.Resources.dado5;
 
-                case 6:
-                    return Properties.Resources.dado6;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(indice));
+                    case 6:
+                        return Properties.Resources.dado6;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(indice));
+                }
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                MessageBox.Show("Índice fuera de rango: " + ex.Message);
+                return null; 
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Entidades
 {
@@ -65,6 +66,7 @@ namespace Entidades
             set { this.turnos = value; }
         }
 
+        [XmlIgnore]
         public List<Dictionary<string, bool>> ListaCategorias { get => listaCategorias; set => listaCategorias = value; }
 
         public void CalcularPuntos(int puntos)
@@ -101,7 +103,7 @@ namespace Entidades
         private bool CompararNombre(string nombre)
         {
             bool retorno = false;
-            foreach (Jugador jugador in Soporte.ObtenerJugadores())
+            foreach (Jugador jugador in Soporte.ObtenerValoresJugadores())
             {
                 if (jugador.Nombre == nombre)
                 {
@@ -129,9 +131,7 @@ namespace Entidades
         private string MostrarDatos()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"{this.id}");
             sb.AppendLine($"{this.nombre}");
-            sb.AppendLine($"{this.puntaje}");
             return sb.ToString();
         }
 

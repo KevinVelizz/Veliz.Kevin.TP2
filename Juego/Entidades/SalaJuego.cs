@@ -17,13 +17,12 @@
 
         }
 
-        public SalaJuego(string nombreJugador1, string nombreJugador2)
+        public SalaJuego(Jugador jugador1, Jugador jugador2)
         {
             this.id = ++contadorJugadores;
-            this.jugador1 = new Jugador(nombreJugador1);
-            this.jugador2 = new Jugador(nombreJugador2);
+            this.jugador1 = jugador1;
+            this.jugador2 = jugador2;
         }
-       
 
         public int Id
         {
