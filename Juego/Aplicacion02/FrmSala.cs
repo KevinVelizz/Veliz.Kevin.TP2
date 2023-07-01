@@ -11,6 +11,8 @@ namespace Aplicacion02
 
         public delegate void CallBack(DataGridView dtgvJugador, Jugador jugador);
 
+
+
         public FrmSala()
         {
             InitializeComponent();
