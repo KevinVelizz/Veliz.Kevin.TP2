@@ -26,6 +26,7 @@ namespace Aplicacion02
             {
                 this.jugador1 = new Jugador(this.txtJugadorUno.Text);
                 Soporte.AgregarJugador(this.jugador1);
+                MessageBox.Show("Se creó correctamente.");
             }
             catch (Exception ex)
             {

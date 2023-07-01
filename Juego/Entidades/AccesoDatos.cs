@@ -119,6 +119,54 @@ namespace Entidades
                 }
             }
             return rta;
-        } 
+        }
+
+        public bool ModificarJugador(Jugador jugador)
+        {
+            bool rta = true;
+
+            try
+            {
+                this.comando = new SqlCommand();
+
+                this.comando.Parameters.AddWithValue("@ID", jugador.Id);
+                this.comando.Parameters.AddWithValue("@Nombre", jugador.Nombre);
+                this.comando.Parameters.AddWithValue("@Puntos", jugador.Puntaje);
+                this.comando.Parameters.AddWithValue("@Victorias", jugador.Victorias);
+
+                string sql = "UPDATE Jugadores ";
+                sql += "SET Nombre = @Nombre, Puntos = @Puntos, Victorias = @Victorias ";
+                sql += "WHERE ID = @ID";
+
+                this.comando.CommandType = CommandType.Text;
+                this.comando.CommandText = sql;
+                this.comando.Connection = this.conexion;
+
+                this.conexion.Open();
+
+                int filasAfectadas = this.comando.ExecuteNonQuery();
+
+                if (filasAfectadas == 0)
+                {
+                    rta = false;
+                }
+
+            }
+            catch (Exception)
+            {
+                rta = false;
+            }
+            finally
+            {
+                if (this.conexion.State == ConnectionState.Open)
+                {
+                    this.conexion.Close();
+                }
+            }
+
+            return rta;
+        }
+
+
     }
 }

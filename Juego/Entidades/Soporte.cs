@@ -13,6 +13,8 @@ namespace Entidades
         static Soporte()
         {
             accesoDatos = new AccesoDatos();
+            archivoJson = new ArchivoJson<SalaJuego>();
+            archivosXML = new ArchivosXML<SalaJuego>();
         }
 
         public static List<Jugador> ObtenerValoresJugadores()
@@ -23,6 +25,11 @@ namespace Entidades
         public static bool AgregarJugador(Jugador jugador)
         {
             return accesoDatos.AgregarDatoJugador(jugador);
+        }
+
+        public static bool ModificarJugador(Jugador jugador)
+        {
+            return accesoDatos.ModificarJugador(jugador);
         }
     }
 }

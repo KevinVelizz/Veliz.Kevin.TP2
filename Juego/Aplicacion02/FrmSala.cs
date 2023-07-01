@@ -60,6 +60,7 @@ namespace Aplicacion02
             }
             else
             {
+                dtgvJugador.Rows.Clear();
                 foreach (Dictionary<string, bool> dic in jugador.ListaCategorias)
                 {
                     foreach (KeyValuePair<string, bool> kvp in dic)
@@ -88,8 +89,8 @@ namespace Aplicacion02
         private void SalaTerminadaEventHandler(object sender, EventArgs e)
         {
             SalaJuego salaJuego = (SalaJuego)sender;
-            Soporte.AgregarJugador(this.sala.Jugador1);
-            Soporte.AgregarJugador(this.sala.Jugador2);
+            Soporte.ModificarJugador(this.sala.Jugador1);
+            Soporte.ModificarJugador(this.sala.Jugador2);
             salas.Add(salaJuego);
             Soporte.ArchivosXML.Serealizar(salas);
             Soporte.ArchivoJson.Serealizar(salas);

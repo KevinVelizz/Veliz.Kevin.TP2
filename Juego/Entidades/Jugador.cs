@@ -92,7 +92,11 @@ namespace Entidades
             }
             int puntosCategoria = categorias.CalculaTipoCategoria(dados);
             this.CalcularPuntos(puntosCategoria);
-            this.ListaCategorias.Add(categorias.CategoriaRealizada);
+            if (!this.listaCategorias.Contains(categorias.CategoriaRealizada))
+            {
+                this.ListaCategorias.Add(categorias.CategoriaRealizada);
+            }
+            
             this.turnos += 1;
             Console.WriteLine($"Terminó jugador {this.nombre}");
             Thread.Sleep(2000);

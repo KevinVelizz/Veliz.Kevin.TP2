@@ -56,13 +56,6 @@ internal class Program
         
         AccesoDatos accesoDatos = new AccesoDatos();
 
-
-        List<Jugador> jugadors = Soporte.ObtenerJugadores();
-
-        foreach (Jugador jugador in  jugadors)
-        {
-            Console.WriteLine(jugador.Nombre);
-        }   
-
+        
     }
 }
