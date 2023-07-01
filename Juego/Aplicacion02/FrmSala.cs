@@ -118,7 +118,7 @@ namespace Aplicacion02
             //catch (NullReferenceException ex)
             //{
             //    MessageBox.Show($"{ex.Message} - {ex.StackTrace}");
-            //joladasdsa
+            //joladasdsasafsa
             //}
         }
 
