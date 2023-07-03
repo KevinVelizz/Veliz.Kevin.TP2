@@ -16,7 +16,7 @@ namespace Aplicacion02
         private Jugador jugador1;
         private Jugador jugador2;
 
-        public Jugador Jugador1 { get => jugador1;}
+        public Jugador Jugador1 { get => jugador1; }
         public Jugador Jugador2 { get => jugador2; }
 
         public FrmSeleccionarJugadores()

@@ -96,7 +96,7 @@
 
         private bool TerminarSala()
         {
-            if (jugador1.categorias.TerminoJuego || jugador2.categorias.TerminoJuego || jugador2.Turnos == 5)
+            if (jugador1.categorias.TerminoJuego || jugador2.categorias.TerminoJuego || jugador2.Turnos == 7)
             {
                 return true;
             }

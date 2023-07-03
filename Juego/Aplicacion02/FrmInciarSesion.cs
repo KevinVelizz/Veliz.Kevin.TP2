@@ -4,18 +4,17 @@ namespace Aplicacion02
     public partial class FrmInciarSesion : Form
     {
         private Usuario usuario;
-
         public Usuario Usuario { get => usuario; private set => usuario = value; }
 
         public FrmInciarSesion()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            Usuario? aux = Funcionalidades.Login(txtEmail.Text, txtContrasenia.Text); // problema usuario
-
+            Usuario? aux = Funcionalidades.Login(txtEmail.Text, txtContrasenia.Text);
 
             if (aux != null)
             {
@@ -34,5 +33,10 @@ namespace Aplicacion02
 
         }
 
+        private void btnCrearUsuario_Click(object sender, EventArgs e)
+        {
+            FrmCrearUsuario frmCrearUsuario = new FrmCrearUsuario();
+            frmCrearUsuario.ShowDialog();
+        }
     }
 }

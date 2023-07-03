@@ -18,7 +18,6 @@ namespace Aplicacion02
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             salas = new List<SalaJuego>();
-
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
@@ -84,7 +83,6 @@ namespace Aplicacion02
             {
                 this.lblPuntajeJugador1.Text = jugadorUno.Puntaje.ToString();
                 this.lblPuntajeJugador2.Text = jugadorDos.Puntaje.ToString();
-
             }
         }
 
@@ -95,7 +93,7 @@ namespace Aplicacion02
             Soporte.ModificarJugador(this.sala.Jugador2);
             salas.Add(salaJuego);
             Soporte.ArchivosXML.Serealizar(salas, Soporte.ArchivosXML.PathSalas);
-            Soporte.ArchivoJson.Serealizar(salas,Soporte.ArchivoJson.PathSalas);
+            Soporte.ArchivoJson.Serealizar(salas, Soporte.ArchivoJson.PathSalas);
 
             this.ModificarLabelPuntosJugadores(salaJuego.Jugador1, salaJuego.Jugador2);
 
@@ -113,18 +111,7 @@ namespace Aplicacion02
 
         private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //try
-            //{
-            //    if (this.sala is not null)
-            //    {
-            //        this.sala.Terminar();
-            //    }
-            //}
-            //catch (NullReferenceException ex)
-            //{
-            //    MessageBox.Show($"{ex.Message} - {ex.StackTrace}");
-            //joladasdsasafsa
-            //}
+            this.cancellationTokenSource.Cancel();
         }
 
         private void ActualizarDadosEventHandler(List<int> dados)

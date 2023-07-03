@@ -85,6 +85,7 @@
             // lblMensajeError
             // 
             lblMensajeError.AutoSize = true;
+            lblMensajeError.ForeColor = Color.Red;
             lblMensajeError.Location = new Point(17, 76);
             lblMensajeError.Name = "lblMensajeError";
             lblMensajeError.Size = new Size(38, 15);

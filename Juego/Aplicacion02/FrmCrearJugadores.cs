@@ -18,7 +18,7 @@ namespace Aplicacion02
             set { this.jugador1 = value; }
         }
 
-        
+
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
@@ -37,7 +37,7 @@ namespace Aplicacion02
 
         private void FrmGenerarJugadores_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

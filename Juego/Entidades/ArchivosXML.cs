@@ -24,7 +24,11 @@ namespace Entidades
         }
 
 
-
+        /// <summary>
+        /// El metodo deserealiza una lista de cualquier tipo de dato.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns>Retorna la lista obtenida en la lectura.</returns>
         public List<T> Deserealizar(string path)
         {
             List<T> listXML = new List<T>();
@@ -43,6 +47,13 @@ namespace Entidades
             return listXML;
         }
 
+
+        /// <summary>
+        /// El método serealiza una lista del tipo de dato la cual se haya inicializado la clase.
+        /// </summary>
+        /// <param name="lista"></param>
+        /// <param name="path"></param>
+        /// <returns>Retorna un true en caso de exito o false en caso de fracaso.</returns>
         public bool Serealizar(List<T> lista, string path)
         {
             bool retorno = false;

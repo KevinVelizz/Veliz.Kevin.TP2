@@ -83,7 +83,7 @@
             panel1.Controls.Add(picDado03);
             panel1.Controls.Add(picDado02);
             panel1.Controls.Add(picDado01);
-            panel1.Location = new Point(377, 17);
+            panel1.Location = new Point(326, 17);
             panel1.Name = "panel1";
             panel1.Size = new Size(280, 393);
             panel1.TabIndex = 3;
@@ -136,15 +136,15 @@
             panelJugador2.Controls.Add(lblPuntajeText2);
             panelJugador2.Controls.Add(lblNombreJugador2);
             panelJugador2.Controls.Add(dtgvJugador2);
-            panelJugador2.Location = new Point(678, 17);
+            panelJugador2.Location = new Point(612, 17);
             panelJugador2.Name = "panelJugador2";
-            panelJugador2.Size = new Size(216, 219);
+            panelJugador2.Size = new Size(261, 219);
             panelJugador2.TabIndex = 4;
             // 
             // lblPuntajeJugador2
             // 
             lblPuntajeJugador2.AutoSize = true;
-            lblPuntajeJugador2.Location = new Point(92, 193);
+            lblPuntajeJugador2.Location = new Point(122, 193);
             lblPuntajeJugador2.Name = "lblPuntajeJugador2";
             lblPuntajeJugador2.Size = new Size(38, 15);
             lblPuntajeJugador2.TabIndex = 3;
@@ -154,7 +154,7 @@
             // 
             lblPuntajeText2.Anchor = AnchorStyles.None;
             lblPuntajeText2.AutoSize = true;
-            lblPuntajeText2.Location = new Point(44, 193);
+            lblPuntajeText2.Location = new Point(66, 193);
             lblPuntajeText2.Name = "lblPuntajeText2";
             lblPuntajeText2.Size = new Size(50, 15);
             lblPuntajeText2.TabIndex = 2;
@@ -176,7 +176,7 @@
             dtgvJugador2.Location = new Point(15, 32);
             dtgvJugador2.Name = "dtgvJugador2";
             dtgvJugador2.RowTemplate.Height = 25;
-            dtgvJugador2.Size = new Size(188, 150);
+            dtgvJugador2.Size = new Size(231, 150);
             dtgvJugador2.TabIndex = 0;
             // 
             // Categoria1
@@ -197,15 +197,15 @@
             panelJugador1.Controls.Add(lblPuntajeText1);
             panelJugador1.Controls.Add(lblNombreJugador1);
             panelJugador1.Controls.Add(dtgvJugador1);
-            panelJugador1.Location = new Point(132, 17);
+            panelJugador1.Location = new Point(63, 17);
             panelJugador1.Name = "panelJugador1";
-            panelJugador1.Size = new Size(225, 219);
+            panelJugador1.Size = new Size(257, 219);
             panelJugador1.TabIndex = 5;
             // 
             // lblPuntajeJugador1
             // 
             lblPuntajeJugador1.AutoSize = true;
-            lblPuntajeJugador1.Location = new Point(105, 193);
+            lblPuntajeJugador1.Location = new Point(130, 193);
             lblPuntajeJugador1.Name = "lblPuntajeJugador1";
             lblPuntajeJugador1.Size = new Size(38, 15);
             lblPuntajeJugador1.TabIndex = 3;
@@ -215,7 +215,7 @@
             // 
             lblPuntajeText1.Anchor = AnchorStyles.None;
             lblPuntajeText1.AutoSize = true;
-            lblPuntajeText1.Location = new Point(61, 193);
+            lblPuntajeText1.Location = new Point(77, 193);
             lblPuntajeText1.Name = "lblPuntajeText1";
             lblPuntajeText1.Size = new Size(50, 15);
             lblPuntajeText1.TabIndex = 2;
@@ -234,10 +234,10 @@
             // 
             dtgvJugador1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvJugador1.Columns.AddRange(new DataGridViewColumn[] { Categoria, Realizado });
-            dtgvJugador1.Location = new Point(16, 32);
+            dtgvJugador1.Location = new Point(13, 32);
             dtgvJugador1.Name = "dtgvJugador1";
             dtgvJugador1.RowTemplate.Height = 25;
-            dtgvJugador1.Size = new Size(194, 150);
+            dtgvJugador1.Size = new Size(225, 150);
             dtgvJugador1.TabIndex = 0;
             // 
             // Categoria

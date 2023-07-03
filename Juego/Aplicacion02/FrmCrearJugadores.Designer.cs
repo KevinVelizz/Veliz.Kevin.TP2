@@ -63,6 +63,7 @@
             // lblAdvertencia
             // 
             lblAdvertencia.AutoSize = true;
+            lblAdvertencia.ForeColor = Color.Red;
             lblAdvertencia.Location = new Point(82, 86);
             lblAdvertencia.Name = "lblAdvertencia";
             lblAdvertencia.Size = new Size(38, 15);

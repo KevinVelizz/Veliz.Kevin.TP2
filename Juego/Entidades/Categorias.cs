@@ -123,10 +123,10 @@ namespace Entidades
                     if (contador == 4)
                     {
                         retorno = true;
+                        break;
                     }
                 }
             }
-            
             return retorno;
         }
 
@@ -227,7 +227,7 @@ namespace Entidades
             KeyValuePair<int, int> primerElemento = dadosOrdenados.FirstOrDefault();
             if (!this.categoriaRealizada.ContainsKey("0"))
             {
-                while (this.categoriaRealizada[primerElemento.Key.ToString()] && dadosOrdenados.Count > 0)
+                while (dadosOrdenados.Count > 0 && (this.categoriaRealizada.ContainsKey(primerElemento.Key.ToString()) && this.categoriaRealizada[primerElemento.Key.ToString()]))
                 {
                     dadosOrdenados.Remove(primerElemento.Key);
                     primerElemento = dadosOrdenados.FirstOrDefault();

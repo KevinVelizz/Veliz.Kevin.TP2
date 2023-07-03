@@ -111,8 +111,9 @@ namespace Entidades
                 }
 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 rta = false;
             }
             finally
@@ -132,15 +133,13 @@ namespace Entidades
             try
             {
                 this.comando = new SqlCommand();
-
                 this.comando.Parameters.AddWithValue("@ID", jugador.Id);
                 this.comando.Parameters.AddWithValue("@Nombre", jugador.Nombre);
                 this.comando.Parameters.AddWithValue("@Puntos", jugador.Puntaje);
                 this.comando.Parameters.AddWithValue("@Victorias", jugador.Victorias);
 
                 string sql = "UPDATE Jugadores ";
-                sql += "SET Nombre = @Nombre, Puntos = @Puntos, Victorias = @Victorias ";
-                sql += "WHERE ID = @ID";
+                sql += "SET Nombre = @Nombre, Puntos = @Puntos, Victorias = @Victorias WHERE ID = @ID";
 
                 this.comando.CommandType = CommandType.Text;
                 this.comando.CommandText = sql;
@@ -156,8 +155,9 @@ namespace Entidades
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 rta = false;
             }
             finally

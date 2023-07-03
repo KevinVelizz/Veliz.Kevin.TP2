@@ -9,6 +9,8 @@ namespace Entidades
         private string correo;
         private string clave;
 
+        public Usuario() { }
+
         public Usuario(string nombre,string correo, string clave)
         {
             this.nombre = nombre;

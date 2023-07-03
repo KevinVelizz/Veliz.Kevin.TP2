@@ -65,6 +65,7 @@
         {
             int cantidaDadosAVolverATirar = DevolverCantidadDadosATirar();
             List<int> indicesDadosASacar = DevolverIndicesDados(cantidaDadosAVolverATirar);
+            indicesDadosASacar.Sort((x, y) => y.CompareTo(x));
 
             if (dados.Count > 0)
             {

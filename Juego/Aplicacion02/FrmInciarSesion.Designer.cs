@@ -28,24 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmInciarSesion));
             txtEmail = new TextBox();
             txtContrasenia = new TextBox();
             lblEmail = new Label();
             lblContrasenia = new Label();
             btnIngresar = new Button();
             btnCrearUsuario = new Button();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(100, 91);
+            txtEmail.Location = new Point(100, 111);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(291, 23);
             txtEmail.TabIndex = 0;
             // 
             // txtContrasenia
             // 
-            txtContrasenia.Location = new Point(100, 129);
+            txtContrasenia.Location = new Point(100, 158);
             txtContrasenia.Name = "txtContrasenia";
             txtContrasenia.Size = new Size(291, 23);
             txtContrasenia.TabIndex = 1;
@@ -54,7 +57,7 @@
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(55, 99);
+            lblEmail.Location = new Point(55, 119);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(39, 15);
             lblEmail.TabIndex = 2;
@@ -63,7 +66,7 @@
             // lblContrasenia
             // 
             lblContrasenia.AutoSize = true;
-            lblContrasenia.Location = new Point(24, 137);
+            lblContrasenia.Location = new Point(24, 166);
             lblContrasenia.Name = "lblContrasenia";
             lblContrasenia.Size = new Size(70, 15);
             lblContrasenia.TabIndex = 3;
@@ -71,7 +74,7 @@
             // 
             // btnIngresar
             // 
-            btnIngresar.Location = new Point(316, 203);
+            btnIngresar.Location = new Point(316, 224);
             btnIngresar.Name = "btnIngresar";
             btnIngresar.Size = new Size(75, 23);
             btnIngresar.TabIndex = 4;
@@ -81,18 +84,30 @@
             // 
             // btnCrearUsuario
             // 
-            btnCrearUsuario.Location = new Point(100, 203);
+            btnCrearUsuario.Location = new Point(100, 224);
             btnCrearUsuario.Name = "btnCrearUsuario";
             btnCrearUsuario.Size = new Size(90, 23);
             btnCrearUsuario.TabIndex = 5;
-            btnCrearUsuario.Text = "Crear Usuario";
+            btnCrearUsuario.Text = "Crear usuario";
             btnCrearUsuario.UseVisualStyleBackColor = true;
+            btnCrearUsuario.Click += btnCrearUsuario_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(172, 37);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(128, 68);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
             // 
             // FrmInciarSesion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(463, 285);
+            Controls.Add(pictureBox1);
             Controls.Add(btnCrearUsuario);
             Controls.Add(btnIngresar);
             Controls.Add(lblContrasenia);
@@ -102,6 +117,7 @@
             Name = "FrmInciarSesion";
             Text = "FrmInciarSesion";
             Load += FrmInciarSesion_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -114,5 +130,6 @@
         private Label lblContrasenia;
         private Button btnIngresar;
         private Button btnCrearUsuario;
+        private PictureBox pictureBox1;
     }
 }
