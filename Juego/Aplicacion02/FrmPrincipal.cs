@@ -1,8 +1,11 @@
-﻿namespace Aplicacion02
+﻿using Entidades;
+
+namespace Aplicacion02
 {
     public partial class FrmPrincipal : Form
     {
 
+        private Usuario usuario;
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -23,7 +26,16 @@
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-
+            FrmInciarSesion frmInciarSesion = new FrmInciarSesion();
+            frmInciarSesion.ShowDialog();
+            if (frmInciarSesion.DialogResult == DialogResult.OK)
+            {
+                this.usuario = frmInciarSesion.Usuario;
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

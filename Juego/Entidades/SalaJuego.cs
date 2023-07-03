@@ -62,7 +62,11 @@
                     this.Terminar();
                 }
             } while (this.jugando && !cancellationTokenSource.IsCancellationRequested);
-            this.Terminar();
+
+            if (cancellationTokenSource.IsCancellationRequested)
+            {
+                this.Terminar();
+            }
         }
 
         public void Terminar()

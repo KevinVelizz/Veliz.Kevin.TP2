@@ -37,7 +37,7 @@ namespace Aplicacion02
 
         private void FrmGenerarJugadores_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

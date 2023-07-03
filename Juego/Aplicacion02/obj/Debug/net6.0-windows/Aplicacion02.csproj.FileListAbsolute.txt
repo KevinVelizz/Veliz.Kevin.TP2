@@ -29,3 +29,4 @@ C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\bin\Debug\net6.0-windo
 C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\obj\Debug\net6.0-windows\Aplicacion02.FrmEstadistica.resources
 C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\obj\Debug\net6.0-windows\Aplicacion02.FrmCrearJugadores.resources
 C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\obj\Debug\net6.0-windows\Aplicacion02.FrmSeleccionarJugadores.resources
+C:\Users\veliz\Desktop\Veliz.Kevin.TP2\Juego\Aplicacion02\obj\Debug\net6.0-windows\Aplicacion02.FrmInciarSesion.resources

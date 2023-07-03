@@ -25,7 +25,7 @@ namespace Aplicacion02
             {
                 this.dtgvJugadores.DataSource = this.jugadores;
             }
-            this.salas = Soporte.ArchivoJson.Deserealizar();
+            this.salas = Soporte.ArchivoJson.Deserealizar(Soporte.ArchivoJson.PathSalas);
             this.dtgvSalas.DataSource = this.salas;
         }
     }

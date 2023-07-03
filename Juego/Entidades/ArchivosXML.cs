@@ -6,7 +6,7 @@ namespace Entidades
 {
     public sealed class ArchivosXML<T> : IArchivos<T> where T : class
     {
-        private static string pathSalas = Path.Combine(TryGetSolutionDirectoryInfo().Parent.FullName, @"salas.json");
+        private string pathSalas = Path.Combine(TryGetSolutionDirectoryInfo().Parent.FullName, @"salas.json");
         public static DirectoryInfo? TryGetSolutionDirectoryInfo(string currentPath = null)
         {
             DirectoryInfo? directory = new DirectoryInfo(currentPath ?? Directory.GetCurrentDirectory());
@@ -17,21 +17,20 @@ namespace Entidades
             return directory;
         }
 
-        public static string PathSalas
+
+        public string PathSalas
         {
-            get { return pathSalas; }
+            get { return this.pathSalas; }
         }
 
 
 
-        public List<T> Deserealizar()
+        public List<T> Deserealizar(string path)
         {
             List<T> listXML = new List<T>();
-            string pathAux = "";
-           
             try
             {
-                using (XmlTextReader sr = new XmlTextReader(pathAux))
+                using (XmlTextReader sr = new XmlTextReader(path))
                 {
                     XmlSerializer serializer = new XmlSerializer((typeof(List<T>)));
                     listXML = serializer.Deserialize(sr) as List<T> ?? new();
@@ -44,12 +43,12 @@ namespace Entidades
             return listXML;
         }
 
-        public bool Serealizar(List<T> lista)
+        public bool Serealizar(List<T> lista, string path)
         {
             bool retorno = false;
             try
             {
-                using (XmlTextWriter writer = new XmlTextWriter(pathSalas, Encoding.UTF8))
+                using (XmlTextWriter writer = new XmlTextWriter(path, Encoding.UTF8))
                 {
                     XmlSerializer ser = new XmlSerializer((typeof(List<T>)));
                     ser.Serialize(writer, lista);

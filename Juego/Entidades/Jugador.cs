@@ -79,7 +79,6 @@ namespace Entidades
             List<int> dados = Funcionalidades.EstablecerValor(5);
             Thread.Sleep(2000);
             this.OnActualizarDados(dados);
-            
 
             for (int i = 0; i < 2; i++)
             {
@@ -112,6 +111,7 @@ namespace Entidades
                 if (jugador.Nombre == nombre)
                 {
                     retorno = true;
+                    break;
                 }
             }
             return retorno;

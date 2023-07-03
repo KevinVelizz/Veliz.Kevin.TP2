@@ -20,6 +20,10 @@ namespace Entidades
             builder.IntegratedSecurity = true;
             builder.InitialCatalog = "generala_db";
             AccesoDatos.cadena_conexion = builder.ConnectionString;
+            //builder.UserID = "sa";
+            //builder.Password = "alumno";
+
+            //AccesoDatos.cadena_conexion = @"Server=localhost\SQLEXPRESS;Database=Test;Trusted_Connection=True;";
         }
 
         public AccesoDatos()

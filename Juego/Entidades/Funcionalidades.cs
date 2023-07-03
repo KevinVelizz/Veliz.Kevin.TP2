@@ -65,7 +65,6 @@
         {
             int cantidaDadosAVolverATirar = DevolverCantidadDadosATirar();
             List<int> indicesDadosASacar = DevolverIndicesDados(cantidaDadosAVolverATirar);
-            indicesDadosASacar.Sort((x, y) => y.CompareTo(x));
 
             if (dados.Count > 0)
             {
@@ -77,6 +76,27 @@
                 dados.AddRange(nuevosDados);
             }
             return dados;
+        }
+
+        /// <summary>
+        /// El método verifica que el email y la clave coincidan con algún usuario dentro del archivo Json.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="clave"></param>
+        /// <returns>Retorna un usuario en caso de coincidencia y un null en caso contrario.</returns>
+        public static Usuario? Login(string email, string clave)
+        {
+            List<Usuario> lista = Soporte.UsuariosJson.Deserealizar(Soporte.usuariosJson.PathUsuarios);
+            Usuario? aux = null;
+
+            foreach (Usuario user in lista)
+            {
+                if (user.Correo == email && user.Clave == clave)
+                {
+                    aux = user;
+                }
+            }
+            return aux;
         }
     }
 }

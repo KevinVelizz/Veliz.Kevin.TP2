@@ -39,6 +39,8 @@
             lblPuntajeText2 = new Label();
             lblNombreJugador2 = new Label();
             dtgvJugador2 = new DataGridView();
+            Categoria1 = new DataGridViewTextBoxColumn();
+            Realizado1 = new DataGridViewTextBoxColumn();
             panelJugador1 = new Panel();
             lblPuntajeJugador1 = new Label();
             lblPuntajeText1 = new Label();
@@ -48,8 +50,7 @@
             Realizado = new DataGridViewTextBoxColumn();
             btnJugar = new Button();
             btnCancelar = new Button();
-            Categoria1 = new DataGridViewTextBoxColumn();
-            Realizado1 = new DataGridViewTextBoxColumn();
+            lblIdSala = new Label();
             ((System.ComponentModel.ISupportInitialize)picDado01).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picDado05).BeginInit();
@@ -178,6 +179,16 @@
             dtgvJugador2.Size = new Size(188, 150);
             dtgvJugador2.TabIndex = 0;
             // 
+            // Categoria1
+            // 
+            Categoria1.HeaderText = "Categoria";
+            Categoria1.Name = "Categoria1";
+            // 
+            // Realizado1
+            // 
+            Realizado1.HeaderText = "Realizado";
+            Realizado1.Name = "Realizado1";
+            // 
             // panelJugador1
             // 
             panelJugador1.Anchor = AnchorStyles.None;
@@ -259,15 +270,16 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += btnCancelar_Click;
             // 
-            // Categoria1
+            // lblIdSala
             // 
-            Categoria1.HeaderText = "Categoria";
-            Categoria1.Name = "Categoria1";
-            // 
-            // Realizado1
-            // 
-            Realizado1.HeaderText = "Realizado";
-            Realizado1.Name = "Realizado1";
+            lblIdSala.AutoSize = true;
+            lblIdSala.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblIdSala.ForeColor = SystemColors.ButtonFace;
+            lblIdSala.Location = new Point(12, 9);
+            lblIdSala.Name = "lblIdSala";
+            lblIdSala.Size = new Size(52, 21);
+            lblIdSala.TabIndex = 8;
+            lblIdSala.Text = "label1";
             // 
             // FrmSala
             // 
@@ -275,6 +287,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 0, 0);
             ClientSize = new Size(919, 494);
+            Controls.Add(lblIdSala);
             Controls.Add(btnCancelar);
             Controls.Add(btnJugar);
             Controls.Add(panelJugador1);
@@ -297,6 +310,7 @@
             panelJugador1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvJugador1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -322,5 +336,6 @@
         private DataGridViewTextBoxColumn Realizado;
         private DataGridViewTextBoxColumn Categoria1;
         private DataGridViewTextBoxColumn Realizado1;
+        private Label lblIdSala;
     }
 }

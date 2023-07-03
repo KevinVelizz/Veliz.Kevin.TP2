@@ -18,12 +18,12 @@ namespace Aplicacion02
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             salas = new List<SalaJuego>();
-           
+
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-
+            salas = Soporte.ArchivoJson.Deserealizar(Soporte.ArchivoJson.PathSalas);
         }
 
         private void btnGenerarSalas_Click(object sender, EventArgs e)
@@ -45,6 +45,7 @@ namespace Aplicacion02
                 CancellationToken token = this.cancellationTokenSource.Token;
 
                 this.btnJugar.Enabled = false;
+                this.lblIdSala.Text = sala.Id.ToString();
                 Task hiloSala = new Task(() => sala.Jugar(this.cancellationTokenSource), token);
                 hiloSala.Start();
             }
@@ -83,6 +84,7 @@ namespace Aplicacion02
             {
                 this.lblPuntajeJugador1.Text = jugadorUno.Puntaje.ToString();
                 this.lblPuntajeJugador2.Text = jugadorDos.Puntaje.ToString();
+
             }
         }
 
@@ -92,8 +94,8 @@ namespace Aplicacion02
             Soporte.ModificarJugador(this.sala.Jugador1);
             Soporte.ModificarJugador(this.sala.Jugador2);
             salas.Add(salaJuego);
-            Soporte.ArchivosXML.Serealizar(salas);
-            Soporte.ArchivoJson.Serealizar(salas);
+            Soporte.ArchivosXML.Serealizar(salas, Soporte.ArchivosXML.PathSalas);
+            Soporte.ArchivoJson.Serealizar(salas,Soporte.ArchivoJson.PathSalas);
 
             this.ModificarLabelPuntosJugadores(salaJuego.Jugador1, salaJuego.Jugador2);
 
@@ -106,6 +108,7 @@ namespace Aplicacion02
                 MessageBox.Show($"El ganador es: {salaJuego.Jugador2.Nombre}");
             }
             MessageBox.Show("Sala de juego terminada: " + this.sala.Id);
+
         }
 
         private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
@@ -168,7 +171,7 @@ namespace Aplicacion02
             catch (ArgumentOutOfRangeException ex)
             {
                 MessageBox.Show("Índice fuera de rango: " + ex.Message);
-                return null; 
+                return null;
             }
         }
 
@@ -183,7 +186,7 @@ namespace Aplicacion02
                 this.ModificarDataGrid(this.dtgvJugador2, jugador);
             }
         }
-        
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.cancellationTokenSource.Cancel();
