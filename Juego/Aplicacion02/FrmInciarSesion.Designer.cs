@@ -45,6 +45,7 @@
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(291, 23);
             txtEmail.TabIndex = 0;
+            txtEmail.Text = "kevin@gmail.com";
             // 
             // txtContrasenia
             // 
@@ -52,6 +53,7 @@
             txtContrasenia.Name = "txtContrasenia";
             txtContrasenia.Size = new Size(291, 23);
             txtContrasenia.TabIndex = 1;
+            txtContrasenia.Text = "12345678";
             txtContrasenia.UseSystemPasswordChar = true;
             // 
             // lblEmail

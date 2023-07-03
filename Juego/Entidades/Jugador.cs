@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace Entidades
 {
-    public class Jugador : IJugador
+    public class Jugador
     {
         private int id;
         private string nombre;
@@ -101,7 +101,6 @@ namespace Entidades
             Thread.Sleep(2000);
             return dados;
         }
-
 
         private bool CompararNombre(string nombre)
         {

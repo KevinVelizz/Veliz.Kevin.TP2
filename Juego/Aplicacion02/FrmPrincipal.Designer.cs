@@ -38,9 +38,10 @@
             // 
             // btnGenerarSala
             // 
-            btnGenerarSala.Location = new Point(24, 376);
+            btnGenerarSala.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
+            btnGenerarSala.Location = new Point(12, 376);
             btnGenerarSala.Name = "btnGenerarSala";
-            btnGenerarSala.Size = new Size(86, 39);
+            btnGenerarSala.Size = new Size(86, 49);
             btnGenerarSala.TabIndex = 0;
             btnGenerarSala.Text = "Generar sala";
             btnGenerarSala.UseVisualStyleBackColor = true;
@@ -68,9 +69,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(116, 376);
+            button1.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
+            button1.Location = new Point(104, 376);
             button1.Name = "button1";
-            button1.Size = new Size(86, 39);
+            button1.Size = new Size(93, 49);
             button1.TabIndex = 3;
             button1.Text = "Estadisticas";
             button1.UseVisualStyleBackColor = true;
@@ -78,9 +80,10 @@
             // 
             // btnCrearJugadores
             // 
-            btnCrearJugadores.Location = new Point(208, 376);
+            btnCrearJugadores.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
+            btnCrearJugadores.Location = new Point(203, 376);
             btnCrearJugadores.Name = "btnCrearJugadores";
-            btnCrearJugadores.Size = new Size(86, 39);
+            btnCrearJugadores.Size = new Size(95, 49);
             btnCrearJugadores.TabIndex = 4;
             btnCrearJugadores.Text = "Crear jugadores";
             btnCrearJugadores.UseVisualStyleBackColor = true;

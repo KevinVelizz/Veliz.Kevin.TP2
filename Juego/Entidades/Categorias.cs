@@ -225,21 +225,18 @@ namespace Entidades
             Dictionary<int, int> dadosOrdenados = dadosRepetidos.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 
             KeyValuePair<int, int> primerElemento = dadosOrdenados.FirstOrDefault();
-            if (!this.categoriaRealizada.ContainsKey("0"))
+            
+            while (dadosOrdenados.Count > 0 && (this.categoriaRealizada.ContainsKey(primerElemento.Key.ToString()) && this.categoriaRealizada[primerElemento.Key.ToString()]))
             {
-                while (dadosOrdenados.Count > 0 && (this.categoriaRealizada.ContainsKey(primerElemento.Key.ToString()) && this.categoriaRealizada[primerElemento.Key.ToString()]))
-                {
-                    dadosOrdenados.Remove(primerElemento.Key);
-                    primerElemento = dadosOrdenados.FirstOrDefault();
-                }
-
-                if (dadosOrdenados.Count > 0)
-                {
-                    this.categoriaRealizada[primerElemento.Key.ToString()] = true;
-                }
-                return primerElemento.Key * primerElemento.Value;
+                dadosOrdenados.Remove(primerElemento.Key);
+                primerElemento = dadosOrdenados.FirstOrDefault();
             }
-            return 0;
+
+            if (dadosOrdenados.Count > 0)
+            {
+                this.categoriaRealizada[primerElemento.Key.ToString()] = true;
+            }
+            return primerElemento.Key * primerElemento.Value;
         }
 
         private bool QuedanCategoriasNumericas()
@@ -253,8 +250,5 @@ namespace Entidades
             }
             return false;
         }
-
-
-
     }
 }

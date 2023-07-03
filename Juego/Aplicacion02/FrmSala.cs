@@ -8,9 +8,8 @@ namespace Aplicacion02
         private SalaJuego sala;
         private CancellationTokenSource cancellationTokenSource;
         private static List<SalaJuego> salas;
-
+        private Task hiloSala;
         public delegate void CallBack(DataGridView dtgvJugador, Jugador jugador);
-
 
 
         public FrmSala()
@@ -25,7 +24,7 @@ namespace Aplicacion02
             salas = Soporte.ArchivoJson.Deserealizar(Soporte.ArchivoJson.PathSalas);
         }
 
-        private void btnGenerarSalas_Click(object sender, EventArgs e)
+        private async void btnGenerarSalas_Click(object sender, EventArgs e)
         {
             FrmSeleccionarJugadores frmSeleccionarJugadores = new FrmSeleccionarJugadores();
             frmSeleccionarJugadores.ShowDialog();
@@ -45,8 +44,12 @@ namespace Aplicacion02
 
                 this.btnJugar.Enabled = false;
                 this.lblIdSala.Text = sala.Id.ToString();
-                Task hiloSala = new Task(() => sala.Jugar(this.cancellationTokenSource), token);
-                hiloSala.Start();
+                this.lblNumeroTurno.Visible = true;
+                this.lblNumeroTurno.Text = sala.Turno.ToString();
+                this.lblJugadorJugando.Visible = true;
+                this.lblJugadorJugando.Text = sala.JugadorJugando;
+                hiloSala = Task.Run(() => sala.Jugar(this.cancellationTokenSource), token);
+                await hiloSala;
             }
         }
 
@@ -60,6 +63,8 @@ namespace Aplicacion02
             }
             else
             {
+                this.lblNumeroTurno.Text = this.sala.Turno.ToString();
+                this.lblJugadorJugando.Text = sala.JugadorJugando;
                 dtgvJugador.Rows.Clear();
                 foreach (Dictionary<string, bool> dic in jugador.ListaCategorias)
                 {
@@ -81,37 +86,49 @@ namespace Aplicacion02
             }
             else
             {
+                this.lblPuntajeJugador1.Visible = true;
+                this.lblPuntajeJugador2.Visible = true;
                 this.lblPuntajeJugador1.Text = jugadorUno.Puntaje.ToString();
                 this.lblPuntajeJugador2.Text = jugadorDos.Puntaje.ToString();
+
             }
         }
 
         private void SalaTerminadaEventHandler(object sender, EventArgs e)
         {
             SalaJuego salaJuego = (SalaJuego)sender;
-            Soporte.ModificarJugador(this.sala.Jugador1);
-            Soporte.ModificarJugador(this.sala.Jugador2);
-            salas.Add(salaJuego);
-            Soporte.ArchivosXML.Serealizar(salas, Soporte.ArchivosXML.PathSalas);
-            Soporte.ArchivoJson.Serealizar(salas, Soporte.ArchivoJson.PathSalas);
-
             this.ModificarLabelPuntosJugadores(salaJuego.Jugador1, salaJuego.Jugador2);
-
             if (salaJuego.Jugador1.Puntaje > salaJuego.Jugador2.Puntaje)
             {
                 MessageBox.Show($"El ganador es: {salaJuego.Jugador1.Nombre}");
             }
-            else
+            else if (salaJuego.Jugador2.Puntaje > salaJuego.Jugador1.Puntaje)
             {
                 MessageBox.Show($"El ganador es: {salaJuego.Jugador2.Nombre}");
             }
+            else
+            {
+                MessageBox.Show("Empate.");
+            }
             MessageBox.Show("Sala de juego terminada: " + this.sala.Id);
-
+            salaJuego.Jugador1.Puntaje += sala.PuntosJugador1;
+            salaJuego.Jugador2.Puntaje += sala.PuntosJugador2;
+            Soporte.ModificarJugador(salaJuego.Jugador1);
+            Soporte.ModificarJugador(salaJuego.Jugador2);
+            salas.Add(salaJuego);
+            Soporte.ArchivosXML.Serealizar(salas, Soporte.ArchivosXML.PathSalas);
+            Soporte.ArchivoJson.Serealizar(salas, Soporte.ArchivoJson.PathSalas);
         }
 
-        private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        private async void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.cancellationTokenSource.Cancel();
+            cancellationTokenSource?.Cancel();
+            if (hiloSala != null && !hiloSala.IsCompleted)
+            {
+                e.Cancel = true; 
+                await hiloSala;
+                this.Close();
+            }
         }
 
         private void ActualizarDadosEventHandler(List<int> dados)
@@ -129,7 +146,6 @@ namespace Aplicacion02
 
         private Bitmap DevolverImagen(int indice)
         {
-
             try
             {
                 switch (indice)
@@ -177,6 +193,7 @@ namespace Aplicacion02
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.cancellationTokenSource.Cancel();
+            this.btnCancelar.Enabled = false;
         }
     }
 }
