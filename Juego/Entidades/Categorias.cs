@@ -1,5 +1,6 @@
 ﻿
 
+using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
 
 namespace Entidades
@@ -249,6 +250,11 @@ namespace Entidades
                 }
             }
             return false;
+        }
+
+        public bool EsCategoriaEspecial(List<int> dados)
+        {
+            return this.EsGeneralaReal(dados) || this.EsGenerala(dados) || this.EsEscaleraMayor(dados) || this.EsEscaleraMenor(dados) || this.EsPoker(dados) || this.EsFull(dados);
         }
     }
 }

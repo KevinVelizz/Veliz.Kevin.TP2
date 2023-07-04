@@ -11,7 +11,6 @@ namespace Aplicacion02
         private Task hiloSala;
         public delegate void CallBack(DataGridView dtgvJugador, Jugador jugador);
 
-
         public FrmSala()
         {
             InitializeComponent();
@@ -90,7 +89,6 @@ namespace Aplicacion02
                 this.lblPuntajeJugador2.Visible = true;
                 this.lblPuntajeJugador1.Text = jugadorUno.Puntaje.ToString();
                 this.lblPuntajeJugador2.Text = jugadorDos.Puntaje.ToString();
-
             }
         }
 
@@ -111,21 +109,23 @@ namespace Aplicacion02
                 MessageBox.Show("Empate.");
             }
             MessageBox.Show("Sala de juego terminada: " + this.sala.Id);
+            salas.Add(salaJuego);
+            Soporte.ArchivosXML.Serealizar(salas, Soporte.ArchivosXML.PathSalas);
+            Soporte.ArchivoJson.Serealizar(salas, Soporte.ArchivoJson.PathSalas);
             salaJuego.Jugador1.Puntaje += sala.PuntosJugador1;
             salaJuego.Jugador2.Puntaje += sala.PuntosJugador2;
             Soporte.ModificarJugador(salaJuego.Jugador1);
             Soporte.ModificarJugador(salaJuego.Jugador2);
-            salas.Add(salaJuego);
-            Soporte.ArchivosXML.Serealizar(salas, Soporte.ArchivosXML.PathSalas);
-            Soporte.ArchivoJson.Serealizar(salas, Soporte.ArchivoJson.PathSalas);
         }
 
         private async void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
             cancellationTokenSource?.Cancel();
+            
             if (hiloSala != null && !hiloSala.IsCompleted)
             {
-                e.Cancel = true; 
+                MessageBox.Show("Se finalizará cuando termine el turno.");
+                e.Cancel = true;
                 await hiloSala;
                 this.Close();
             }
@@ -192,8 +192,14 @@ namespace Aplicacion02
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.cancellationTokenSource.Cancel();
-            this.btnCancelar.Enabled = false;
+            
+            if (this.hiloSala != null)
+            {
+                this.cancellationTokenSource.Cancel();
+                MessageBox.Show("Se finalizará cuando termine el turno.");
+                this.btnCancelar.Enabled = false;
+            }
+           
         }
     }
 }

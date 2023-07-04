@@ -27,7 +27,6 @@ namespace Entidades
         public string Correo { get => correo; set => correo = value; }
         public string Clave { get => clave; set => clave = value; }
 
-
         private string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
@@ -47,7 +46,7 @@ namespace Entidades
         private bool CompararEmail(string email)
         {
             bool retorno = false;
-            foreach (Usuario usuario in Soporte.usuariosJson.Deserealizar(Soporte.usuariosJson.PathUsuarios))
+            foreach (Usuario usuario in Soporte.UsuariosJson.Deserealizar(Soporte.UsuariosJson.PathUsuarios))
             {
                 if (usuario.Correo == email)
                 {
@@ -57,7 +56,5 @@ namespace Entidades
             }
             return retorno;
         }
-
-
     }
 }

@@ -22,6 +22,7 @@ namespace Aplicacion02
         public FrmSeleccionarJugadores()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void FrmSeleccionarJugadores_Load(object sender, EventArgs e)
@@ -34,20 +35,24 @@ namespace Aplicacion02
         {
             try
             {
-                if (((Jugador)this.cboJugadores01.SelectedItem).Nombre == ((Jugador)this.cboJugadores02.SelectedItem).Nombre)
+                if (this.cboJugadores01.SelectedItem is not null)
                 {
-                    throw new Exception("Seleccione dos jugadores diferentes para cada uno.");
+                    if (((Jugador)this.cboJugadores01.SelectedItem).Nombre == ((Jugador)this.cboJugadores02.SelectedItem).Nombre)
+                    {
+                        throw new Exception("Seleccione jugadores diferentes.");
+                    }
+
+                    this.jugador1 = (Jugador)this.cboJugadores01.SelectedItem;
+                    this.jugador2 = (Jugador)this.cboJugadores02.SelectedItem;
+                    this.DialogResult = DialogResult.OK;
                 }
-                this.jugador1 = (Jugador)this.cboJugadores01.SelectedItem;
-                this.jugador2 = (Jugador)this.cboJugadores02.SelectedItem;
-                this.DialogResult = DialogResult.OK;
+                throw new Exception("No hay jugadores seleccionados.");
             }
             catch (Exception ex)
             {
                 this.lblMensajeError.Visible = true;
                 this.lblMensajeError.Text = ex.Message;
             }
-
         }
     }
 }

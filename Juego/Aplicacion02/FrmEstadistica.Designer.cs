@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             dtgvSalas = new DataGridView();
+            Jugador1 = new DataGridViewTextBoxColumn();
+            Jugador2 = new DataGridViewTextBoxColumn();
+            PuntajeJugador1 = new DataGridViewTextBoxColumn();
+            PuntajeJugador2 = new DataGridViewTextBoxColumn();
+            Ganador = new DataGridViewTextBoxColumn();
+            Turnos = new DataGridViewTextBoxColumn();
             dtgvJugadores = new DataGridView();
             label1 = new Label();
             label2 = new Label();
@@ -39,11 +45,42 @@
             // dtgvSalas
             // 
             dtgvSalas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvSalas.Columns.AddRange(new DataGridViewColumn[] { Jugador1, Jugador2, PuntajeJugador1, PuntajeJugador2, Ganador, Turnos });
             dtgvSalas.Location = new Point(12, 83);
             dtgvSalas.Name = "dtgvSalas";
             dtgvSalas.RowTemplate.Height = 25;
             dtgvSalas.Size = new Size(240, 150);
             dtgvSalas.TabIndex = 1;
+            // 
+            // Jugador1
+            // 
+            Jugador1.HeaderText = "Jugador1";
+            Jugador1.Name = "Jugador1";
+            // 
+            // Jugador2
+            // 
+            Jugador2.HeaderText = "Jugado2";
+            Jugador2.Name = "Jugador2";
+            // 
+            // PuntajeJugador1
+            // 
+            PuntajeJugador1.HeaderText = "PuntajeJugador1";
+            PuntajeJugador1.Name = "PuntajeJugador1";
+            // 
+            // PuntajeJugador2
+            // 
+            PuntajeJugador2.HeaderText = "PuntajeJugador2";
+            PuntajeJugador2.Name = "PuntajeJugador2";
+            // 
+            // Ganador
+            // 
+            Ganador.HeaderText = "Ganador";
+            Ganador.Name = "Ganador";
+            // 
+            // Turnos
+            // 
+            Turnos.HeaderText = "Turnos";
+            Turnos.Name = "Turnos";
             // 
             // dtgvJugadores
             // 
@@ -78,7 +115,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(543, 295);
+            ClientSize = new Size(543, 318);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(dtgvJugadores);
@@ -97,5 +134,11 @@
         private DataGridView dtgvJugadores;
         private Label label1;
         private Label label2;
+        private DataGridViewTextBoxColumn Jugador1;
+        private DataGridViewTextBoxColumn Jugador2;
+        private DataGridViewTextBoxColumn PuntajeJugador1;
+        private DataGridViewTextBoxColumn PuntajeJugador2;
+        private DataGridViewTextBoxColumn Ganador;
+        private DataGridViewTextBoxColumn Turnos;
     }
 }

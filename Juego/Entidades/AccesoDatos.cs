@@ -31,6 +31,10 @@ namespace Entidades
             this.conexion = new SqlConnection(AccesoDatos.cadena_conexion);
         }
 
+        /// <summary>
+        /// El método verifica que se pudo conectar a la base de datos.
+        /// </summary>
+        /// <returns>Retorna true en caso de que se pueda conectar o false caso contario.</returns>
         public bool ProbarConexion()
         {
             bool rta = true;
@@ -52,7 +56,12 @@ namespace Entidades
             }
             return rta;
         }
+        
 
+        /// <summary>
+        /// El método se conecta a la base de datos y obtiene una lista de la tabla de jugadores.
+        /// </summary>
+        /// <returns>Retorna la lista obtenida.</returns>
         public List<Jugador> ObtenerListaDatoJugadores()
         {
             List<Jugador> lista = new List<Jugador>();
@@ -60,7 +69,7 @@ namespace Entidades
             {
                 this.comando = new SqlCommand();
                 this.comando.CommandType = CommandType.Text;
-                this.comando.CommandText = "SELECT * FROM Jugadores";
+                this.comando.CommandText = "SELECT * FROM Jugadores_generala";
                 this.comando.Connection = this.conexion;
                 this.conexion.Open();
                 this.lector = comando.ExecuteReader();
@@ -70,7 +79,7 @@ namespace Entidades
                     Jugador jugador = new Jugador();
                     jugador.Id = (int)lector["ID"];
                     jugador.Nombre = lector["Nombre"].ToString();
-                    jugador.Puntaje = (int)lector["Puntos"];
+                    jugador.Puntaje = (int)lector["Puntaje"];
                     jugador.Victorias = (int)lector["Victorias"];
                     lista.Add(jugador);
                 }
@@ -95,7 +104,7 @@ namespace Entidades
             bool rta = true;
             try
             {
-                string sql = "INSERT INTO Jugadores (Nombre, Puntos, Victorias) VALUES(";
+                string sql = "INSERT INTO Jugadores_generala (Nombre, Puntaje, Victorias) VALUES(";
                 sql = sql + "'" + jugador.Nombre.ToString() + "'," + jugador.Puntaje + "," + jugador.Victorias + ")";
 
                 this.comando = new SqlCommand();
@@ -109,7 +118,6 @@ namespace Entidades
                 {
                     rta = false;
                 }
-
             }
             catch (Exception ex)
             {
@@ -129,17 +137,16 @@ namespace Entidades
         public bool ModificarJugador(Jugador jugador)
         {
             bool rta = true;
-
             try
             {
                 this.comando = new SqlCommand();
                 this.comando.Parameters.AddWithValue("@ID", jugador.Id);
                 this.comando.Parameters.AddWithValue("@Nombre", jugador.Nombre);
-                this.comando.Parameters.AddWithValue("@Puntos", jugador.Puntaje);
+                this.comando.Parameters.AddWithValue("@Puntaje", jugador.Puntaje);
                 this.comando.Parameters.AddWithValue("@Victorias", jugador.Victorias);
 
-                string sql = "UPDATE Jugadores ";
-                sql += "SET Nombre = @Nombre, Puntos = @Puntos, Victorias = @Victorias WHERE ID = @ID";
+                string sql = "UPDATE Jugadores_generala ";
+                sql += "SET Nombre = @Nombre, Puntaje = @Puntaje, Victorias = @Victorias WHERE ID = @ID";
 
                 this.comando.CommandType = CommandType.Text;
                 this.comando.CommandText = sql;

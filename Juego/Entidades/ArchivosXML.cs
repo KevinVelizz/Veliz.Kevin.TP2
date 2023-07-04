@@ -6,7 +6,7 @@ namespace Entidades
 {
     public sealed class ArchivosXML<T> : IArchivos<T> where T : class
     {
-        private string pathSalas = Path.Combine(TryGetSolutionDirectoryInfo().Parent.FullName, @"salas.json");
+        private string pathSalas = Path.Combine(TryGetSolutionDirectoryInfo().Parent.FullName, @"salas.XML");
         public static DirectoryInfo? TryGetSolutionDirectoryInfo(string currentPath = null)
         {
             DirectoryInfo? directory = new DirectoryInfo(currentPath ?? Directory.GetCurrentDirectory());

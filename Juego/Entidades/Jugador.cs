@@ -83,7 +83,7 @@ namespace Entidades
             for (int i = 0; i < 2; i++)
             {
                 Thread.Sleep(2000);
-                if (Funcionalidades.ObtenerBooleanoAleatorio())
+                if (Funcionalidades.ObtenerBooleanoAleatorio() && !this.categorias.EsCategoriaEspecial(dados))
                 {
                     dados = Funcionalidades.VolverATirar(dados);
                     this.OnActualizarDados(dados);

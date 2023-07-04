@@ -31,6 +31,7 @@ namespace Aplicacion02
             if (frmInciarSesion.DialogResult == DialogResult.OK)
             {
                 this.usuario = frmInciarSesion.Usuario;
+                this.lblNombreUser.Text = this.usuario.Nombre;
             }
             else
             {
@@ -42,17 +43,12 @@ namespace Aplicacion02
         {
             FrmEstadistica frmEstadistica = new FrmEstadistica();
             frmEstadistica.ShowDialog();
-
         }
 
         private void btnCrearJugadores_Click(object sender, EventArgs e)
         {
             FrmCrearJugadores frmCrearJugadores = new FrmCrearJugadores();
             frmCrearJugadores.ShowDialog();
-            if (frmCrearJugadores.DialogResult == DialogResult.OK)
-            {
-
-            }
         }
     }
 }

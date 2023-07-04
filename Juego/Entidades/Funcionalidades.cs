@@ -10,11 +10,15 @@
         public static List<int> EstablecerValor(int cantidadDadosTirar)
         {
             List<int> dados = new List<int>();
-            for (int i = 0; i < cantidadDadosTirar; i++)
+            if (cantidadDadosTirar <= 5)
             {
-                int numRandom = new Random().Next(1, 7);
-                dados.Add(numRandom);
+                for (int i = 0; i < cantidadDadosTirar; i++)
+                {
+                    int numRandom = new Random().Next(1, 7);
+                    dados.Add(numRandom);
+                }
             }
+            
             return dados;
         }
 
@@ -87,7 +91,7 @@
         /// <returns>Retorna un usuario en caso de coincidencia y un null en caso contrario.</returns>
         public static Usuario? Login(string email, string clave)
         {
-            List<Usuario> lista = Soporte.UsuariosJson.Deserealizar(Soporte.usuariosJson.PathUsuarios);
+            List<Usuario> lista = Soporte.UsuariosJson.Deserealizar(Soporte.UsuariosJson.PathUsuarios);
             Usuario? aux = null;
 
             foreach (Usuario user in lista)

@@ -52,10 +52,12 @@ internal class Program
         //    Console.WriteLine(salaJuego1.Jugador1.Nombre);
         //}
         
-        Jugador jugador1 = new Jugador("Juan");
-        
+        Jugador jugador1 = new Jugador("Laura");
+        jugador1.Id = 3;
+
         AccesoDatos accesoDatos = new AccesoDatos();
 
+        accesoDatos.ModificarJugador(jugador1);
         
     }
 }

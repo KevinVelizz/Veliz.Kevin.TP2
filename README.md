@@ -9,6 +9,12 @@
 ### La aplicación es una implementación del juego la generala. Comienza la app con una login en donde se puede iniciar sesión en caso de tener una cuenta creada o caso contrario la opción de poder generar una. Una vez dentro tendrá las opciones para generar salas, crear jugadores y ver las estadisticas obtenidas.
 
 
+## **Diagrama de clase**
+![imagen de Diagrama](./Juego/imagen/diagramaDeClase.jpg)
+
+---
+
+
 ## **Justificación técnica**
 
 ### **Delegados.**
@@ -59,7 +65,7 @@ private void ActualizarDadosEventHandler(List<int> dados)
 
 ### **Interfaces y generics**
 
-Utilice una **interfaz** llamada IArchivos que la cual utilizo para generar dos clases de archivos **JSON** y **XML** que que no tienen nada en común pero van a implementar métodos similares y así deben respetar la firma de la interfaz.
+Utilice una **interfaz** llamada IArchivos que es genérica que la cual la utilizo para dos clases génericas de archivos **JSON** y **XML** que van a implementar los métodos de la interfaz los cuales también son genericas para poder serealizar y deserealizar una lista de cualquier tipo de objeto.
 
 ```` C#
 public interface IArchivos <T> where T : class
@@ -70,7 +76,6 @@ public interface IArchivos <T> where T : class
 ````
 
 su implementanción. Cada clase debe implementar los metodos que contiene la interfaz, es decir, deben cumplir la firma.
-
 
 ```` C#
 public sealed class ArchivoJson<T> : IArchivos<T> where T : class
@@ -195,7 +200,7 @@ public sealed class ArchivosXML<T> : IArchivos<T> where T : class
 
 ### **Base de datos.** ###
 
-Implemento base de datos para el guardado y obtención de datos de los jugadores generados en el juego.
+Implemento base de datos para el guardado, modificación y obtención de datos de los jugadores generados en el juego.
 Tirando las consultas de **INSERT**, **UPDATE** y **SELECT**.
 
 ````C#
@@ -313,7 +318,6 @@ public bool ModificarJugador(Jugador jugador)
         {
             rta = false;
         }
-
     }
     catch (Exception ex)
     {
@@ -335,3 +339,25 @@ public bool ModificarJugador(Jugador jugador)
 Utilizo archivos para serealiza o deseralizar en JSON o XML.
 Su implementación se encuentra en la explicación de interfaces y generics.
 
+
+### **Hilos.** ###
+
+Utilizo hilos para poder generar las salas en cada formulario, cada una de estás son independientes entre sí. Con la posibilidad de cancelar el hilo con un botón.
+
+
+```` C#
+private Task hiloSala;
+hiloSala = Task.Run(() => sala.Jugar(this.cancellationTokenSource), token);
+await hiloSala;
+
+private async void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+{
+    cancellationTokenSource?.Cancel();
+    if (hiloSala != null && !hiloSala.IsCompleted)
+    {
+        e.Cancel = true;
+        await hiloSala;
+        this.Close();
+    }
+}
+````

@@ -110,7 +110,7 @@
             // 
             lblJugadorJugando.AutoSize = true;
             lblJugadorJugando.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            lblJugadorJugando.Location = new Point(136, 13);
+            lblJugadorJugando.Location = new Point(149, 13);
             lblJugadorJugando.Name = "lblJugadorJugando";
             lblJugadorJugando.Size = new Size(17, 20);
             lblJugadorJugando.TabIndex = 9;
@@ -216,7 +216,7 @@
             // lblNombreJugador2
             // 
             lblNombreJugador2.AutoSize = true;
-            lblNombreJugador2.Location = new Point(112, 14);
+            lblNombreJugador2.Location = new Point(106, 14);
             lblNombreJugador2.Name = "lblNombreJugador2";
             lblNombreJugador2.Size = new Size(58, 15);
             lblNombreJugador2.TabIndex = 1;
@@ -319,7 +319,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCancelar.Font = new Font("Segoe UI Symbol", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
             btnCancelar.Location = new Point(107, 439);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(95, 43);
@@ -351,6 +351,7 @@
             Controls.Add(panelJugador1);
             Controls.Add(panelJugador2);
             Controls.Add(panel1);
+            ForeColor = SystemColors.ActiveCaptionText;
             Name = "FrmSala";
             Text = "Salas";
             FormClosing += FrmPrincipal_FormClosing;

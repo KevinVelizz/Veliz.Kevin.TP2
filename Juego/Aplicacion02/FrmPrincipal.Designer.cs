@@ -33,15 +33,20 @@
             label1 = new Label();
             button1 = new Button();
             btnCrearJugadores = new Button();
+            panel1 = new Panel();
+            lblNombreUser = new Label();
+            pictureBox2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // btnGenerarSala
             // 
             btnGenerarSala.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            btnGenerarSala.Location = new Point(12, 376);
+            btnGenerarSala.Location = new Point(3, 138);
             btnGenerarSala.Name = "btnGenerarSala";
-            btnGenerarSala.Size = new Size(86, 49);
+            btnGenerarSala.Size = new Size(246, 49);
             btnGenerarSala.TabIndex = 0;
             btnGenerarSala.Text = "Generar sala";
             btnGenerarSala.UseVisualStyleBackColor = true;
@@ -50,9 +55,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.generala;
-            pictureBox1.Location = new Point(217, 99);
+            pictureBox1.Location = new Point(301, 126);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(347, 204);
+            pictureBox1.Size = new Size(347, 212);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
@@ -61,7 +66,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Symbol", 20.25F, FontStyle.Italic, GraphicsUnit.Point);
-            label1.Location = new Point(309, 59);
+            label1.Location = new Point(403, 76);
             label1.Name = "label1";
             label1.Size = new Size(147, 37);
             label1.TabIndex = 2;
@@ -70,9 +75,9 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            button1.Location = new Point(104, 376);
+            button1.Location = new Point(3, 214);
             button1.Name = "button1";
-            button1.Size = new Size(93, 49);
+            button1.Size = new Size(246, 49);
             button1.TabIndex = 3;
             button1.Text = "Estadisticas";
             button1.UseVisualStyleBackColor = true;
@@ -81,28 +86,63 @@
             // btnCrearJugadores
             // 
             btnCrearJugadores.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            btnCrearJugadores.Location = new Point(203, 376);
+            btnCrearJugadores.Location = new Point(3, 289);
             btnCrearJugadores.Name = "btnCrearJugadores";
-            btnCrearJugadores.Size = new Size(95, 49);
+            btnCrearJugadores.Size = new Size(246, 49);
             btnCrearJugadores.TabIndex = 4;
             btnCrearJugadores.Text = "Crear jugadores";
             btnCrearJugadores.UseVisualStyleBackColor = true;
             btnCrearJugadores.Click += btnCrearJugadores_Click;
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.ForestGreen;
+            panel1.Controls.Add(lblNombreUser);
+            panel1.Controls.Add(pictureBox2);
+            panel1.Controls.Add(btnGenerarSala);
+            panel1.Controls.Add(btnCrearJugadores);
+            panel1.Controls.Add(button1);
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(258, 450);
+            panel1.TabIndex = 5;
+            // 
+            // lblNombreUser
+            // 
+            lblNombreUser.AutoSize = true;
+            lblNombreUser.Location = new Point(101, 86);
+            lblNombreUser.Name = "lblNombreUser";
+            lblNombreUser.Size = new Size(38, 15);
+            lblNombreUser.TabIndex = 6;
+            lblNombreUser.Text = "label2";
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.usuario;
+            pictureBox2.Location = new Point(72, 3);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(100, 76);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 5;
+            pictureBox2.TabStop = false;
+            // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Snow;
             ClientSize = new Size(800, 450);
-            Controls.Add(btnCrearJugadores);
-            Controls.Add(button1);
+            Controls.Add(panel1);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
-            Controls.Add(btnGenerarSala);
+            ForeColor = SystemColors.ControlText;
             Name = "FrmPrincipal";
             Text = "FormSala";
             Load += FrmPrincipal_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -114,5 +154,8 @@
         private Label label1;
         private Button button1;
         private Button btnCrearJugadores;
+        private Panel panel1;
+        private Label lblNombreUser;
+        private PictureBox pictureBox2;
     }
 }

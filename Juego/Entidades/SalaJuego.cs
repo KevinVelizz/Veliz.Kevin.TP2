@@ -1,8 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using System.Threading;
-using System.Xml.Serialization;
-
-namespace Entidades
+﻿namespace Entidades
 {
     public class SalaJuego
     {
@@ -20,10 +16,7 @@ namespace Entidades
         public event EventHandler SalaTerminada;
         public event ActualizarCategoriasEventHandler ActualizarCategorias;
 
-        public SalaJuego()
-        {
-
-        }
+        public SalaJuego(){}
 
         public SalaJuego(Jugador jugador1, Jugador jugador2)
         {
@@ -69,21 +62,25 @@ namespace Entidades
             get { return this.turno; }
             set { this.turno = value; }
         }
-
-        [JsonIgnore]
-        [XmlIgnore]
+        
         public string JugadorJugando
         {
             get { return this.jugadorJugando; }
             set { this.jugadorJugando = value; }
         }
-
+        
         public int PuntosJugador1 { get => puntosJugador1; set => puntosJugador1 = value; }
+        
         public int PuntosJugador2 { get => puntosJugador2; set => puntosJugador2 = value; }
 
+
+        /// <summary>
+        /// El método inicia el juego.
+        /// </summary>
+        /// <param name="cancellationTokenSource"></param>
         public void Jugar(CancellationTokenSource cancellationTokenSource)
         {
-            do
+            while (this.jugando && !cancellationTokenSource.IsCancellationRequested)
             {
                 this.jugadorJugando = this.jugador1.Nombre;
                 this.turno++;
@@ -98,7 +95,7 @@ namespace Entidades
                 {
                     this.Terminar();
                 }
-            } while (this.jugando && !cancellationTokenSource.IsCancellationRequested);
+            }
 
             if (cancellationTokenSource.IsCancellationRequested)
             {
@@ -106,16 +103,22 @@ namespace Entidades
             }
         }
 
+
+        /// <summary>
+        /// El método se ejecuta cuando se termina el juego y se muestra el ganador.
+        /// </summary>
         public void Terminar()
         {
             if (this.jugador1.Puntaje > this.jugador2.Puntaje)
             {
                 this.nombreJugadorGanador = this.jugador1.Nombre;
+                this.jugador1.Victorias += 1;
                 Console.WriteLine($"El ganador es:{this.jugador1.Nombre}");
             }
             else if (this.jugador2.Puntaje > this.jugador1.Puntaje)
             {
                 this.nombreJugadorGanador = this.jugador2.Nombre;
+                this.jugador2.Victorias += 1;
                 Console.WriteLine($"El ganador es: {this.jugador2.Nombre}");
             }
             else
@@ -128,6 +131,10 @@ namespace Entidades
             Console.WriteLine("Sala de juego terminada: " + Id);
         }
 
+
+        /// <summary>
+        /// El método genera la invocación del evento SalaTerminada.
+        /// </summary>
         private void OnSalaTerminada()
         {
             if (SalaTerminada is not null)
@@ -136,15 +143,21 @@ namespace Entidades
             }
         }
 
+
+        /// <summary>
+        /// El método consulta si el juego terminó o no.
+        /// </summary>
+        /// <returns>Retorna un bool en caso de exito o fracaso caso contrario.</returns>
         private bool TerminarSala()
         {
-            if (jugador1.categorias.TerminoJuego || jugador2.categorias.TerminoJuego || jugador2.Turnos == 4)
-            {
-                return true;
-            }
-            return false;
+            return jugador1.categorias.TerminoJuego || jugador2.categorias.TerminoJuego || jugador2.Turnos == 4;
         }
 
+
+        /// <summary>
+        /// El método genera la invocación del evento ActualizarCategorias.
+        /// </summary>
+        /// <param name="jugador"></param>
         private void OnActualizarCategorias(Jugador jugador)
         {
             if (this.ActualizarCategorias is not null)

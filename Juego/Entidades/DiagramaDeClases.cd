@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Entidades.AccesoDatos">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEgAIAAAAAEABAAAAAAAAAAAAAIAAAAAAAAAAEAE=</HashCode>
+      <FileName>AccesoDatos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.ArchivoJson&lt;T&gt;">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAIAAAAAAAIAAAAAABAAAAAQAAAAQAAAAAAAAIA=</HashCode>
+      <FileName>ArchivoJson.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Entidades.ArchivosXML&lt;T&gt;">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAIAAAAAAAIAAAAAAAAAAAAAAAAAQAAAAAAAAIA=</HashCode>
+      <FileName>ArchivosXML.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Entidades.Categorias">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgoAEAIIQBAAAAAAABQIAABECEAEQABBBAAAA=</HashCode>
+      <FileName>Categorias.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Funcionalidades">
+    <Position X="12.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAQAABAAAAAAAAAAAAAACAQAQAAAAAAA=</HashCode>
+      <FileName>Funcionalidades.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Jugador">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAACAgAAAAICAACMgAgAiQAQAAEAABAAAAAABAAAAhQ=</HashCode>
+      <FileName>Jugador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.SalaJuego">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwCQBAAAgAAgA4EAAEIRAAAAFAAAAAQAACABEAIAgw=</HashCode>
+      <FileName>SalaJuego.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Soporte">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACoAACAEAAAAAAAAIAAAACAAAAAAAAAAEAAAABAg=</HashCode>
+      <FileName>Soporte.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidades.Usuario">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAQAAACEAAAAgAAAAIAAAACAAAAQAAAAEAA=</HashCode>
+      <FileName>Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Entidades.IArchivos&lt;T&gt;">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>IArchivos.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Delegate Name="ActualizarDadosEventHandler">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Delegados.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="ActualizarCategoriasEventHandler">
+    <Position X="12.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Delegados.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

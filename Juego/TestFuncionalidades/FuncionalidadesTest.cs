@@ -22,5 +22,31 @@ namespace TestFuncionalidades
                 Assert.IsTrue(valor >= 1 && valor <= 6);
             }
         }
+
+        [TestMethod]
+        public void TestEstablecerValor_DadosGenerados_CantidadCorrecta()
+        {
+            // Arrange
+            int cantidadDadosTirar = 5;
+
+            // Act
+            List<int> dados = Funcionalidades.EstablecerValor(cantidadDadosTirar);
+
+            // Assert
+            Assert.AreEqual(cantidadDadosTirar, dados.Count);
+        }
+
+        [TestMethod]
+        public void TestEstablecerValor_DadosGenerados_CantidadIncorrecta()
+        {
+            // Arrange
+            int cantidadDadosTirar = 7;
+
+            // Act
+            List<int> dados = Funcionalidades.EstablecerValor(cantidadDadosTirar);
+
+            // Assert
+            Assert.AreEqual(0, dados.Count);
+        }
     }
 }

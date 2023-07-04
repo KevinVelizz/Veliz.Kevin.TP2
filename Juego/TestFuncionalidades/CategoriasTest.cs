@@ -102,6 +102,19 @@ namespace Pruebas
         }
 
         [TestMethod]
+        public void EsEscaleraMayor_SiTieneEscaleraMayor_RetornaFalse()
+        {
+            // Arrange - Preparar el caso de prueba.
+            List<int> dados = new List<int> { 2, 3, 4, 6, 5 };
+            Categorias categorias = new Categorias();
+            // Act - Invocar al método a probar.
+            bool resultado = categorias.EsEscaleraMayor(dados);
+
+            // Assert - Verifico que el resultado sea el esperado.
+            Assert.IsFalse(resultado);
+        }
+
+        [TestMethod]
         public void EsEscaleraMenor_SiTieneEscaleraMenor_RetornaTrue()
         {
             // Arrange - Preparar el caso de prueba.
@@ -112,6 +125,19 @@ namespace Pruebas
 
             // Assert - Verifico que el resultado sea el esperado.
             Assert.IsTrue(resultado);
+        }
+
+        [TestMethod]
+        public void EsEscaleraMenor_SiTieneEscaleraMenor_RetornaFalse()
+        {
+            // Arrange - Preparar el caso de prueba.
+            List<int> dados = new List<int> { 1, 5, 3, 2, 5 };
+            Categorias categorias = new Categorias();
+            // Act - Invocar al método a probar.
+            bool resultado = categorias.EsEscaleraMenor(dados);
+
+            // Assert - Verifico que el resultado sea el esperado.
+            Assert.IsFalse(resultado);
         }
     }
 }

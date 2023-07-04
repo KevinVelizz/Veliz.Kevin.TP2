@@ -18,15 +18,19 @@ namespace Aplicacion02
             set { this.jugador1 = value; }
         }
 
-
-
         private void btnCrear_Click(object sender, EventArgs e)
         {
             try
             {
                 this.jugador1 = new Jugador(this.txtJugadorUno.Text);
-                Soporte.AgregarJugador(this.jugador1);
-                MessageBox.Show("Se creó correctamente.");
+                if(Soporte.AgregarJugador(this.jugador1))
+                {
+                    MessageBox.Show("Se creó correctamente.");
+                }
+                else
+                {
+                    MessageBox.Show("No se creó correctamente.");
+                }
             }
             catch (Exception ex)
             {
