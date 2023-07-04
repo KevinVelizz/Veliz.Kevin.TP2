@@ -17,8 +17,7 @@ namespace Entidades
             return directory;
         }
 
-
-        public string PathSalas
+         public string PathSalas
         {
             get { return this.pathSalas; }
         }
