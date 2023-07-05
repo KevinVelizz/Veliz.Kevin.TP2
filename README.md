@@ -8,6 +8,14 @@
 ## **Resumen**
 ### La aplicación es una implementación del juego la generala. Comienza la app con una login en donde se puede iniciar sesión en caso de tener una cuenta creada o caso contrario la opción de poder generar una. Una vez dentro tendrá las opciones para generar salas, crear jugadores y ver las estadisticas obtenidas.
 
+![imagen de Diagrama](./Juego/imagen/imagenLogin.jpg)
+
+![imagen de Diagrama](./Juego/imagen/ImagenMen%C3%BA.jpg)
+
+![imagen de Diagrama](./Juego/imagen/ImagenSala.jpg)
+
+---
+
 
 ## **Diagrama de clase**
 ![imagen de Diagrama](./Juego/imagen/diagramaDeClase.jpg)
