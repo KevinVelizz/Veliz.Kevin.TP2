@@ -122,7 +122,7 @@ namespace Aplicacion02
             if (hiloSala != null && !hiloSala.IsCompleted)
             {
                 cancellationTokenSource?.Cancel();
-                MessageBox.Show("Se finalizará cuando termine el turno.");
+                MessageBox.Show("Se cerrará cuando termine el turno.");
                 e.Cancel = true;
                 await hiloSala;
                 this.Close();

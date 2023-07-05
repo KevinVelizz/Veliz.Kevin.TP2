@@ -117,7 +117,7 @@
             Controls.Add(txtContrasenia);
             Controls.Add(txtEmail);
             Name = "FrmInciarSesion";
-            Text = "FrmInciarSesion";
+            Text = "Iniciar Sesion";
             Load += FrmInciarSesion_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

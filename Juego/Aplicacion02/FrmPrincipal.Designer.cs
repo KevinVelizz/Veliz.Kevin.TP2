@@ -137,7 +137,7 @@
             Controls.Add(pictureBox1);
             ForeColor = SystemColors.ControlText;
             Name = "FrmPrincipal";
-            Text = "FormSala";
+            Text = "Inicio";
             Load += FrmPrincipal_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);

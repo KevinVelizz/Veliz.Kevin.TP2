@@ -8,11 +8,11 @@
 ## **Resumen**
 ### La aplicación es una implementación del juego la generala. Comienza la app con una login en donde se puede iniciar sesión en caso de tener una cuenta creada o caso contrario la opción de poder generar una. Una vez dentro tendrá las opciones para generar salas, crear jugadores y ver las estadisticas obtenidas.
 
-![imagen de Diagrama](./Juego/imagen/imagenLogin.jpg)
+![imagen de Diagrama](./Juego/imagen/InicarSesion.jpg)
 
-![imagen de Diagrama](./Juego/imagen/ImagenMen%C3%BA.jpg)
+![imagen de Diagrama](./Juego/imagen/Inicio.jpg)
 
-![imagen de Diagrama](./Juego/imagen/ImagenSala.jpg)
+![imagen de Diagrama](./Juego/imagen/Sala.jpg)
 
 ---
 
@@ -223,7 +223,7 @@ public List<Jugador> ObtenerListaDatoJugadores()
     {
         this.comando = new SqlCommand();
         this.comando.CommandType = CommandType.Text;
-        this.comando.CommandText = "SELECT * FROM Jugadores";
+        this.comando.CommandText = "SELECT * FROM Jugadores_generala";
         this.comando.Connection = this.conexion;
         this.conexion.Open();
         this.lector = comando.ExecuteReader();
@@ -263,7 +263,7 @@ public bool AgregarDatoJugador(Jugador jugador)
     bool rta = true;
     try
     {
-        string sql = "INSERT INTO Jugadores (Nombre, Puntos, Victorias) VALUES(";
+        string sql = "INSERT INTO Jugadores_generala (Nombre, Puntos, Victorias) VALUES(";
         sql = sql + "'" + jugador.Nombre.ToString() + "'," + jugador.Puntaje + "," + jugador.Victorias + ")";
 
         this.comando = new SqlCommand();
@@ -310,7 +310,7 @@ public bool ModificarJugador(Jugador jugador)
         this.comando.Parameters.AddWithValue("@Puntos", jugador.Puntaje);
         this.comando.Parameters.AddWithValue("@Victorias", jugador.Victorias);
 
-        string sql = "UPDATE Jugadores ";
+        string sql = "UPDATE Jugadores_generala ";
         sql += "SET Nombre = @Nombre, Puntos = @Puntos, Victorias = @Victorias WHERE ID = @ID";
 
         this.comando.CommandType = CommandType.Text;
@@ -358,13 +358,13 @@ Utilizo hilos para poder generar las salas en cada formulario, cada una de está
 ```` C#
 private Task hiloSala;
 hiloSala = Task.Run(() => sala.Jugar(this.cancellationTokenSource), token);
-await hiloSala;
 
 private async void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
 {
-    cancellationTokenSource?.Cancel();
+    
     if (hiloSala != null && !hiloSala.IsCompleted)
     {
+        cancellationTokenSource?.Cancel();
         e.Cancel = true;
         await hiloSala;
         this.Close();

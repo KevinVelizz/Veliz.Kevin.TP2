@@ -78,7 +78,7 @@ namespace Entidades
                 {
                     Jugador jugador = new Jugador();
                     jugador.Id = (int)lector["ID"];
-                    jugador.Nombre = lector["Nombre"].ToString();
+                    jugador.Nombre = lector["Nombre"].ToString() ?? "";
                     jugador.Puntaje = (int)lector["Puntaje"];
                     jugador.Victorias = (int)lector["Victorias"];
                     lista.Add(jugador);
