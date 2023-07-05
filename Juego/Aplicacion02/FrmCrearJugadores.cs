@@ -11,7 +11,6 @@ namespace Aplicacion02
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
         }
-
         public Jugador Jugador1
         {
             get { return this.jugador1; }
@@ -35,7 +34,7 @@ namespace Aplicacion02
             catch (Exception ex)
             {
                 this.lblAdvertencia.Visible = true;
-                this.lblAdvertencia.Text = $"{ex.Message}";
+                this.lblAdvertencia.Text = ex.Message;
             }
         }
 

@@ -20,10 +20,15 @@ namespace Entidades
             return directory;
         }
 
+
+        /// <summary>
+        /// El método deserealiza el contenido del archivo Json en una lista y la retorna.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns>Retorna la lista del archivo.</returns>
         public List<T> Deserealizar(string path)
         {
             List<T> listaSalas = new List<T>();
-            
             try
             {
                 using (TextReader sr = new StreamReader(path))
@@ -35,10 +40,16 @@ namespace Entidades
             {
                 Console.WriteLine($"ERROR: {ex.Message} - {ex.StackTrace}");
             }
-           
             return listaSalas;
         }
 
+
+        /// <summary>
+        /// El método serealiza una lista de objetos en un archivo .json.
+        /// </summary>
+        /// <param name="lista"></param>
+        /// <param name="path"></param>
+        /// <returns>Retorna true en caso de éxito y un false caso contrario.</returns>
         public bool Serealizar(List<T> lista, string path)
         {
             bool retorno = false;

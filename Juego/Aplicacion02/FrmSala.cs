@@ -23,7 +23,7 @@ namespace Aplicacion02
             salas = Soporte.ArchivoJson.Deserealizar(Soporte.ArchivoJson.PathSalas);
         }
 
-        private async void btnGenerarSalas_Click(object sender, EventArgs e)
+        private void btnGenerarSalas_Click(object sender, EventArgs e)
         {
             FrmSeleccionarJugadores frmSeleccionarJugadores = new FrmSeleccionarJugadores();
             frmSeleccionarJugadores.ShowDialog();
@@ -48,7 +48,6 @@ namespace Aplicacion02
                 this.lblJugadorJugando.Visible = true;
                 this.lblJugadorJugando.Text = sala.JugadorJugando;
                 hiloSala = Task.Run(() => sala.Jugar(this.cancellationTokenSource), token);
-                await hiloSala;
             }
         }
 
@@ -81,7 +80,7 @@ namespace Aplicacion02
         {
             if (this.InvokeRequired)
             {
-                this.Invoke(new Action<Jugador, Jugador>(ModificarLabelPuntosJugadores), jugadorUno, jugadorDos);
+                this.BeginInvoke(new Action<Jugador, Jugador>(ModificarLabelPuntosJugadores), jugadorUno, jugadorDos);
             }
             else
             {
@@ -120,16 +119,21 @@ namespace Aplicacion02
 
         private async void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            cancellationTokenSource?.Cancel();
-            
             if (hiloSala != null && !hiloSala.IsCompleted)
             {
+                cancellationTokenSource?.Cancel();
                 MessageBox.Show("Se finalizará cuando termine el turno.");
                 e.Cancel = true;
                 await hiloSala;
                 this.Close();
             }
         }
+
+
+        /// <summary>
+        /// El método actualiza las imagenes de los dados dependiendo los valores de la lista que recibe por parametros.
+        /// </summary>
+        /// <param name="dados"></param>
 
         private void ActualizarDadosEventHandler(List<int> dados)
         {
@@ -144,6 +148,12 @@ namespace Aplicacion02
             this.picDado05.Image = this.DevolverImagen(dados[4]);
         }
 
+
+        /// <summary>
+        /// El método busca la imagen en la carpeta Resources y devuelve la imagen.
+        /// </summary>
+        /// <param name="indice"></param>
+        /// <returns>un objeto Bitmap correspondiente a la imagen.</returns>
         private Bitmap DevolverImagen(int indice)
         {
             try
@@ -178,6 +188,11 @@ namespace Aplicacion02
             }
         }
 
+
+        /// <summary>
+        /// El método modifica los datos del DataGridView dependiendo el jugador ingresado.
+        /// </summary>
+        /// <param name="jugador"></param>
         private void ActualizarCategoriasEventHandler(Jugador jugador)
         {
             if (this.lblNombreJugador1.Text == jugador.Nombre)
@@ -190,16 +205,20 @@ namespace Aplicacion02
             }
         }
 
+
+        /// <summary>
+        /// El método cancela el hilo secundario producido anteriormente y finalizará cuando termine la ronda.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            
             if (this.hiloSala != null)
             {
                 this.cancellationTokenSource.Cancel();
                 MessageBox.Show("Se finalizará cuando termine el turno.");
                 this.btnCancelar.Enabled = false;
             }
-           
         }
     }
 }

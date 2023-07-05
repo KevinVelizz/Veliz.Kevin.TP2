@@ -61,7 +61,7 @@ private void ActualizarDadosEventHandler(List<int> dados)
     this.picDado05.Image = this.DevolverImagen(dados[4]);
 }               
 ````
-
+---
 
 ### **Interfaces y generics**
 
@@ -196,10 +196,9 @@ public sealed class ArchivosXML<T> : IArchivos<T> where T : class
     }
 }
 ````
-
+---
 
 ### **Base de datos.** ###
-
 Implemento base de datos para el guardado, modificación y obtención de datos de los jugadores generados en el juego.
 Tirando las consultas de **INSERT**, **UPDATE** y **SELECT**.
 
@@ -335,10 +334,13 @@ public bool ModificarJugador(Jugador jugador)
 }
 ````
 
+---
+
 ### **Archivos.** ###
 Utilizo archivos para serealiza o deseralizar en JSON o XML.
 Su implementación se encuentra en la explicación de interfaces y generics.
 
+---
 
 ### **Hilos.** ###
 
@@ -358,6 +360,46 @@ private async void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs 
         e.Cancel = true;
         await hiloSala;
         this.Close();
+    }
+}
+````
+
+---
+
+### **Excepciones.**
+Utilizo excepciones genericas lanzando yo las excepciones y atrapandolas en donde corresponda, generando un mensaje en un label en caso de que se lance y capture la exception.
+
+````C#
+public Jugador(string nombre) :this()
+{
+    if (this.CompararNombre(nombre))
+    {
+        throw new Exception("Ya existe un jugador con ese nombre.");
+    }
+    else
+    {
+        this.nombre = ValidarCampo(nombre);
+    }
+}
+
+private void btnCrear_Click(object sender, EventArgs e)
+{
+    try
+    {
+        this.jugador1 = new Jugador(this.txtJugadorUno.Text);
+        if(Soporte.AgregarJugador(this.jugador1))
+        {
+            MessageBox.Show("Se creó correctamente.");
+        }
+        else
+        {
+            MessageBox.Show("No se creó correctamente.");
+        }
+    }
+    catch (Exception ex)
+    {
+        this.lblAdvertencia.Visible = true;
+        this.lblAdvertencia.Text = ex.Message;
     }
 }
 ````

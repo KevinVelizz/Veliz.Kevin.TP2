@@ -1,7 +1,4 @@
-﻿
-
-using System.Runtime.CompilerServices;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace Entidades
 {
@@ -34,6 +31,11 @@ namespace Entidades
 
         public bool TerminoJuego { get => terminoJuego;}
 
+        /// <summary>
+        /// El método verifica que jugada se produjo, agregar esa jugada al diccionario de las categorias realizadas y retorna los puntos realizados.
+        /// </summary>
+        /// <param name="dados"></param>
+        /// <returns>Retorna los puntos generados dependiendo la jugada.</returns>
         public int CalculaTipoCategoria(List<int> dados)
         {
             int puntos = 0;
@@ -85,6 +87,12 @@ namespace Entidades
             return puntos;
         }
 
+
+        /// <summary>
+        /// El método verifica si los dados pertenece a la jugada generala es decir que todos los dados sean igual excepto todos uno.
+        /// </summary>
+        /// <param name="dados"></param>
+        /// <returns>Retorna true en caso de ser la jugada esperada o false caso contrario.</returns>
         public bool EsGenerala(List<int> dados)
         {
             bool retorno = false;
@@ -106,6 +114,13 @@ namespace Entidades
             }
             return retorno;
         }
+
+
+        /// <summary>
+        /// El método verifica si los dados pertenece a la jugada poker es decir que contenga 4 dados iguales.
+        /// </summary>
+        /// <param name="dados"></param>
+        /// <returns>Retorna true en caso de ser la jugada esperada o false caso contrario.</returns>
         public bool EsPoker(List<int> dados)
         {
             bool retorno = false;
@@ -131,24 +146,31 @@ namespace Entidades
             return retorno;
         }
 
+
+        /// <summary>
+        /// El método verifica si los dados pertenece a la jugada es full es decir que contenga 3 dados iguales y 2 dados iguales diferentes a los anteriores.
+        /// </summary>
+        /// <param name="dados"></param>
+        /// <returns>Retorna true en caso de ser la jugada esperada o false caso contrario.</returns>
         public bool EsFull(List<int> dados)
         {
             bool retorno = false;
-            try
+            if (dados.Count > 0)
             {
                 dados.Sort();
-                if (dados[0] == dados[1] && dados[1] == dados[2] && dados[3] == dados[4] || dados[0] == dados[1] && dados[2] == dados[3] && dados[3] == dados[4])
+                if ((dados[0] == dados[1] && dados[1] == dados[2] && dados[3] == dados[4] || dados[0] == dados[1] && dados[2] == dados[3] && dados[3] == dados[4]) && (dados[0] != dados[4]))
                 {
                     retorno = true;
                 }
             }
-            catch (ArgumentOutOfRangeException e)
-            {
-                Console.WriteLine($"{e.StackTrace} - {e.Message}");
-            }
             return retorno;
         }
 
+        /// <summary>
+        /// El método verifica si los dados pertenece a la jugada Escalera Menor es decir que contenga la lista de dados los valores 1 al 5.
+        /// </summary>
+        /// <param name="dados"></param>
+        /// <returns>Retorna true en caso de ser la jugada esperada o false caso contrario.</returns>
         public bool EsEscaleraMenor(List<int> dados)
         {
             bool retorno = false;
@@ -171,6 +193,12 @@ namespace Entidades
             return retorno;
         }
 
+
+        /// <summary>
+        /// El método verifica si los dados pertenece a la jugada Escalera mayor es decir que contenga la lista de dados los valores 2 al 6.
+        /// </summary>
+        /// <param name="dados"></param>
+        /// <returns>Retorna true en caso de ser la jugada esperada o false caso contrario.</returns>
         public bool EsEscaleraMayor(List<int> dados)
         {
             bool retorno = false;
@@ -194,6 +222,12 @@ namespace Entidades
             return retorno;
         }
 
+
+        /// <summary>
+        /// El método verifica si los dados pertenece a la jugada generala real es decir que todos los dados sean igual 1.
+        /// </summary>
+        /// <param name="dados"></param>
+        /// <returns>Retorna true en caso de ser la jugada esperada o false caso contrario.</returns>
         public bool EsGeneralaReal(List<int> dados)
         {
             bool retorno = false;
@@ -208,38 +242,54 @@ namespace Entidades
             return retorno;
         }
 
+
+        /// <summary>
+        /// El método verifica si los dados pertenece a la jugada númerica, es decir, si no genera ninguna jugada anterior elegirá
+        /// la key con mayor repetición.
+        /// </summary>
+        /// <param name="dados"></param>
+        /// <returns>Retorna el valor del puntaje que es la multiplicación del valor del dado por la cantidad de veces que salió.</returns>
         public int DevolverPuntajeNumeros(List<int> dados)
         {
             Dictionary<int, int> dadosRepetidos = new Dictionary<int, int>();
 
-            for (int i = 0; i < dados.Count; i++)
+            if (dados.Count > 0)
             {
-                if (!dadosRepetidos.ContainsKey(dados[i]))
+                for (int i = 0; i < dados.Count; i++)
                 {
-                    dadosRepetidos.Add(dados[i], 1);
+                    if (!dadosRepetidos.ContainsKey(dados[i]))
+                    {
+                        dadosRepetidos.Add(dados[i], 1);
+                    }
+                    else
+                    {
+                        dadosRepetidos[dados[i]] += 1;
+                    }
                 }
-                else
+                Dictionary<int, int> dadosOrdenados = dadosRepetidos.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+
+                KeyValuePair<int, int> primerElemento = dadosOrdenados.FirstOrDefault();
+
+                while (dadosOrdenados.Count > 0 && (this.categoriaRealizada.ContainsKey(primerElemento.Key.ToString()) && this.categoriaRealizada[primerElemento.Key.ToString()]))
                 {
-                    dadosRepetidos[dados[i]] += 1;
+                    dadosOrdenados.Remove(primerElemento.Key);
+                    primerElemento = dadosOrdenados.FirstOrDefault();
                 }
-            }
-            Dictionary<int, int> dadosOrdenados = dadosRepetidos.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 
-            KeyValuePair<int, int> primerElemento = dadosOrdenados.FirstOrDefault();
-            
-            while (dadosOrdenados.Count > 0 && (this.categoriaRealizada.ContainsKey(primerElemento.Key.ToString()) && this.categoriaRealizada[primerElemento.Key.ToString()]))
-            {
-                dadosOrdenados.Remove(primerElemento.Key);
-                primerElemento = dadosOrdenados.FirstOrDefault();
+                if (dadosOrdenados.Count > 0)
+                {
+                    this.categoriaRealizada[primerElemento.Key.ToString()] = true;
+                }
+                return primerElemento.Key * primerElemento.Value;
             }
-
-            if (dadosOrdenados.Count > 0)
-            {
-                this.categoriaRealizada[primerElemento.Key.ToString()] = true;
-            }
-            return primerElemento.Key * primerElemento.Value;
+            return 0;
         }
 
+
+        /// <summary>
+        /// El método verifica si hay jugadas númericas y retorna true o false.
+        /// </summary>
+        /// <returns>Retorna true en caso de haber jugadas o false caso contrario.</returns>
         private bool QuedanCategoriasNumericas()
         {
             for (int i = 1; i <= 6; i++)
@@ -252,6 +302,11 @@ namespace Entidades
             return false;
         }
 
+        /// <summary>
+        /// El método verifica si hizo alguna jugada especial para que en caso de la 1ra 0 2da tirada haya hecho alguna jugada especial conserve esa jugada y pase el turno.
+        /// </summary>
+        /// <param name="dados"></param>
+        /// <returns>Retorna true en caso de generar una jugada especial o false caso contrario.</returns>
         public bool EsCategoriaEspecial(List<int> dados)
         {
             return this.EsGeneralaReal(dados) || this.EsGenerala(dados) || this.EsEscaleraMayor(dados) || this.EsEscaleraMenor(dados) || this.EsPoker(dados) || this.EsFull(dados);

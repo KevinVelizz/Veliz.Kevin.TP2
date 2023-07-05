@@ -17,12 +17,15 @@ namespace Aplicacion02
         private void FrmEstadistica_Load(object sender, EventArgs e)
         {
             this.jugadores = Soporte.ObtenerValoresJugadores();
+            this.salas = Soporte.ArchivoJson.Deserealizar(Soporte.ArchivoJson.PathSalas);
             if (this.jugadores.Count > 0)
             {
                 List<Jugador> listaOrdenadaDescendente = this.jugadores.OrderByDescending(jugador => jugador.Puntaje).ToList();
                 this.dtgvJugadores.DataSource = listaOrdenadaDescendente;
+                List<Jugador> listaOrdenadaDescendenteVictorias = this.jugadores.OrderByDescending(jugador => jugador.Victorias).ToList();
+                this.lblJugadorMasVictoria.Text = listaOrdenadaDescendenteVictorias[0].Nombre;
+                this.lblJugadorMenorVictoria.Text = listaOrdenadaDescendenteVictorias[listaOrdenadaDescendenteVictorias.Count - 1].Nombre;
             }
-            this.salas = Soporte.ArchivoJson.Deserealizar(Soporte.ArchivoJson.PathSalas);
 
             if (this.salas.Count > 0)
             {

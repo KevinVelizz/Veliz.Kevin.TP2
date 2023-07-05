@@ -73,7 +73,6 @@
         
         public int PuntosJugador2 { get => puntosJugador2; set => puntosJugador2 = value; }
 
-
         /// <summary>
         /// El método inicia el juego.
         /// </summary>
@@ -102,7 +101,6 @@
                 this.Terminar();
             }
         }
-
 
         /// <summary>
         /// El método se ejecuta cuando se termina el juego y se muestra el ganador.
@@ -142,7 +140,6 @@
                 SalaTerminada?.Invoke(this, EventArgs.Empty);
             }
         }
-
 
         /// <summary>
         /// El método consulta si el juego terminó o no.

@@ -98,7 +98,12 @@ namespace Entidades
             }
             return lista;
         }
-      
+
+        /// <summary>
+        /// El método agrega un jugador a la base de datos.
+        /// </summary>
+        /// <param name="jugador"></param>
+        /// <returns></returns>
         public bool AgregarDatoJugador(Jugador jugador)
         {
             bool rta = true;
@@ -134,6 +139,12 @@ namespace Entidades
             return rta;
         }
 
+
+        /// <summary>
+        /// El método genera una consulta de tipo modificación a la base de datos de un jugador pasado por parametro.
+        /// </summary>
+        /// <param name="jugador"></param>
+        /// <returns>Retorna true en caso de exito o false caso contrario.</returns>
         public bool ModificarJugador(Jugador jugador)
         {
             bool rta = true;

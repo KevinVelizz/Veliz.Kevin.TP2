@@ -1,0 +1,14 @@
+CREATE DATABASE generala_db;
+
+CREATE TABLE Jugadores_generala
+(
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    Nombre VARCHAR(50),
+    Puntaje INT,
+    Victorias INT
+);
+
+INSERT INTO Jugadores_generala (Nombre, Puntaje, Victorias)
+VALUES ('Juan', 0, 0),
+       ('María', 0, 0),
+       ('Pedro', 0, 0);

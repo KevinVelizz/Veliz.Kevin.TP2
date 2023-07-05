@@ -227,7 +227,9 @@
             dtgvJugador2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvJugador2.Columns.AddRange(new DataGridViewColumn[] { Categoria1, Realizado1 });
             dtgvJugador2.Location = new Point(15, 32);
+            dtgvJugador2.MultiSelect = false;
             dtgvJugador2.Name = "dtgvJugador2";
+            dtgvJugador2.ReadOnly = true;
             dtgvJugador2.RowTemplate.Height = 25;
             dtgvJugador2.Size = new Size(231, 150);
             dtgvJugador2.TabIndex = 0;
@@ -236,11 +238,13 @@
             // 
             Categoria1.HeaderText = "Categoria";
             Categoria1.Name = "Categoria1";
+            Categoria1.ReadOnly = true;
             // 
             // Realizado1
             // 
             Realizado1.HeaderText = "Realizado";
             Realizado1.Name = "Realizado1";
+            Realizado1.ReadOnly = true;
             // 
             // panelJugador1
             // 
@@ -291,7 +295,9 @@
             dtgvJugador1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvJugador1.Columns.AddRange(new DataGridViewColumn[] { Categoria, Realizado });
             dtgvJugador1.Location = new Point(13, 32);
+            dtgvJugador1.MultiSelect = false;
             dtgvJugador1.Name = "dtgvJugador1";
+            dtgvJugador1.ReadOnly = true;
             dtgvJugador1.RowTemplate.Height = 25;
             dtgvJugador1.Size = new Size(225, 150);
             dtgvJugador1.TabIndex = 0;
@@ -300,11 +306,13 @@
             // 
             Categoria.HeaderText = "Categoria";
             Categoria.Name = "Categoria";
+            Categoria.ReadOnly = true;
             // 
             // Realizado
             // 
             Realizado.HeaderText = "Realizado";
             Realizado.Name = "Realizado";
+            Realizado.ReadOnly = true;
             // 
             // btnJugar
             // 
